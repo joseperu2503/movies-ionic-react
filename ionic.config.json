@@ -1,0 +1,7 @@
+{
+  "name": "movies-ionic-react",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react-vite"
+}
