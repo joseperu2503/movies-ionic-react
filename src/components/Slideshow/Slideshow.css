@@ -1,0 +1,34 @@
+.swiper-pagination-horizontal {
+  bottom: -20px !important;
+}
+
+.swiper-container {
+  padding-bottom: 40px;
+}
+
+.swiper {
+  overflow: visible !important;
+}
+
+.swiper-pagination-bullet {
+  opacity: 0 !important;
+}
+.swiper-pagination-bullet-active-prev,
+.swiper-pagination-bullet-active-next {
+  background: var(--movies-primary);
+  height: 8px;
+  width: 8px;
+  border-radius: 4px;
+  transform: scale(1) !important;
+  opacity: 0.32 !important;
+  display: inline-block;
+}
+
+.swiper-pagination-bullet-active {
+  background: var(--movies-primary);
+  height: 8px;
+  width: 24px;
+  border-radius: 4px;
+  opacity: 1 !important;
+  transform: scale(1) !important;
+}

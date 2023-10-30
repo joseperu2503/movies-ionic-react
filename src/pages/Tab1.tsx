@@ -14,6 +14,7 @@ import { ResponsePaginate } from "../interfaces/responsePaginate.interface";
 import { Movie } from "../interfaces/movie.interface";
 import { TvSerie } from "../interfaces/tvSerie.interface";
 import { Genre, GenresResponse } from "../interfaces/genre.interface";
+import { Slideshow } from "../components/Slideshow/Slideshow";
 
 const Tab1: React.FC = () => {
   const [movies, setMovies] = useState<Movie[]>([]);
@@ -71,6 +72,7 @@ const Tab1: React.FC = () => {
           </IonToolbar>
         </IonHeader>
 
+        <Slideshow></Slideshow>
         <div>Movies</div>
         <div className="flex overflow-x-auto ">
           {movies.map((movie, index) => {
