@@ -1,8 +1,10 @@
 import {
+  IonButtons,
   IonContent,
   IonHeader,
   IonPage,
   IonRouterLink,
+  IonSearchbar,
   IonTitle,
   IonToolbar,
   useIonRouter,
@@ -15,6 +17,8 @@ import { Movie } from "../interfaces/movie.interface";
 import { TvSerie } from "../interfaces/tvSerie.interface";
 import { Genre, GenresResponse } from "../interfaces/genre.interface";
 import { Slideshow } from "../components/Slideshow/Slideshow";
+import { HorizontalScroll } from "../components/HorizontalScroll/HorizontalScroll";
+import { Icon } from "@iconify/react";
 
 const Tab1: React.FC = () => {
   const [movies, setMovies] = useState<Movie[]>([]);
@@ -60,70 +64,62 @@ const Tab1: React.FC = () => {
 
   return (
     <IonPage>
-      <IonHeader>
+      <IonHeader translucent={true}>
+        <IonToolbar class="h-16">
+          <div className="ps-4 flex items-center gap-2">
+            <Icon icon="mdi:movie-open-settings" className="w-5 h-5" />
+            <span className="font-semibold text-lg">Movie Plus</span>
+          </div>
+        </IonToolbar>
         <IonToolbar>
-          <IonTitle>Tab 1</IonTitle>
+          <IonSearchbar placeholder="Search a tittle.."></IonSearchbar>
         </IonToolbar>
       </IonHeader>
       <IonContent fullscreen>
-        <IonHeader collapse="condense">
-          <IonToolbar>
-            <IonTitle size="large">Tab 1</IonTitle>
-          </IonToolbar>
-        </IonHeader>
-
-        <Slideshow></Slideshow>
-        <div>Movies</div>
-        <div className="flex overflow-x-auto ">
-          {movies.map((movie, index) => {
-            return (
-              <div
-                className="w-40 min-w-max"
-                onClick={() => router.push(`/tab1/movie/${movie.id}`)}
-                key={movie.id}
-              >
-                {/* <div>{movie.title}</div> */}
-                <img
-                  src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-                  alt=""
-                  className="w-40 h-60 object-cover"
-                />
-              </div>
-            );
-          })}
+        <div className="mt-6">
+          <Slideshow></Slideshow>
         </div>
-
-        <div>Series</div>
-        <div className="flex overflow-x-auto ">
-          {series.map((serie) => {
-            return (
-              <div
-                className="w-40 min-w-max"
-                key={serie.id}
-                onClick={() => router.push(`/tab1/serie/${serie.id}`)}
-              >
-                <img
-                  src={`https://image.tmdb.org/t/p/w500${serie.poster_path}`}
-                  alt=""
-                  className="w-40 h-60 object-cover"
-                />
-              </div>
-            );
-          })}
+        <div className="flex justify-between px-6 mt-6">
+          <span className="font-semibold text-white">Popular</span>
+          <span className="text-sm text-primary font-medium">See All</span>
         </div>
-
-        <div>Movie genres</div>
-        <div className="flex flex-col">
-          {movieGenres.map((movieGenre) => {
-            return <div key={movieGenre.id}>{movieGenre.name}</div>;
-          })}
+        <div className="mt-4">
+          <HorizontalScroll url="/movie/popular"></HorizontalScroll>
         </div>
-
-        <div>Series genres</div>
-        <div className="flex flex-col">
-          {tvSerieGenres.map((tvSerieGenre) => {
-            return <div key={tvSerieGenre.id}>{tvSerieGenre.name}</div>;
-          })}
+        <div className="flex justify-between px-6 mt-6">
+          <span className="font-semibold text-white">Now Playing</span>
+          <span className="text-sm text-primary font-medium">See All</span>
+        </div>
+        <div className="mt-4">
+          <HorizontalScroll url="/movie/now_playing"></HorizontalScroll>
+        </div>
+        <div className="flex justify-between px-6 mt-6">
+          <span className="font-semibold text-white">Top Rated</span>
+          <span className="text-sm text-primary font-medium">See All</span>
+        </div>
+        <div className="mt-4">
+          <HorizontalScroll url="/movie/top_rated"></HorizontalScroll>
+        </div>
+        <div className="flex justify-between px-6 mt-6">
+          <span className="font-semibold text-white">Upcoming</span>
+          <span className="text-sm text-primary font-medium">See All</span>
+        </div>
+        <div className="mt-4">
+          <HorizontalScroll url="/movie/upcoming"></HorizontalScroll>
+        </div>
+        <div className="flex justify-between px-6 mt-6">
+          <span className="font-semibold text-white">Popular Series</span>
+          <span className="text-sm text-primary font-medium">See All</span>
+        </div>
+        <div className="mt-4">
+          <HorizontalScroll url="/tv/popular"></HorizontalScroll>
+        </div>
+        <div className="flex justify-between px-6 mt-6">
+          <span className="font-semibold text-white">Airing Today</span>
+          <span className="text-sm text-primary font-medium">See All</span>
+        </div>
+        <div className="mt-4">
+          <HorizontalScroll url="/tv/airing_today"></HorizontalScroll>
         </div>
       </IonContent>
     </IonPage>

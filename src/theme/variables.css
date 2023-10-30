@@ -236,9 +236,12 @@ http://ionicframework.com/docs/theming/ */
 
 :root {
   --ion-background-color: #1f1d2b;
+  --ion-toolbar-background: #1f1d2b;
   --ion-text-color: #ffffff;
   --ion-text-color-rgb: 255, 255, 255;
   --ion-card-background: #242424;
 
+  --movies-background: #1f1d2b;
   --movies-primary: #12cdd9;
+  --movies-secondary: #ff8700;
 }

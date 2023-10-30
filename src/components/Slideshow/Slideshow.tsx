@@ -42,7 +42,7 @@ const Slideshow = () => {
                 <img
                   src={`https://image.tmdb.org/t/p/w500${movie.backdrop_path}`}
                   alt=""
-                  className="rounded-lg"
+                  className="rounded-2xl"
                 />
               </SwiperSlide>
             );
