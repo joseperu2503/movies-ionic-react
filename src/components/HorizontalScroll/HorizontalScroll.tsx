@@ -9,30 +9,51 @@ import { TvSerie } from "../../interfaces/tvSerie.interface";
 
 interface Props {
   url: string;
+  type: "movie" | "tv";
 }
-const HorizontalScroll = ({ url }: Props) => {
-  const [movies, setMovies] = useState<(Movie | TvSerie)[]>([]);
+const HorizontalScroll = ({ url, type }: Props) => {
+  const [movies, setMovies] = useState<Movie[]>([]);
+  const [series, setSeries] = useState<TvSerie[]>([]);
 
   useEffect(() => {
-    getMovies();
+    if (type == "movie") {
+      getMovies();
+    } else {
+      getSeries();
+    }
   }, []);
   const getMovies = async () => {
-    const moviesResponse = await mdbApi.get<ResponsePaginate<Movie | TvSerie>>(
-      url
-    );
+    const moviesResponse = await mdbApi.get<ResponsePaginate<Movie>>(url);
     setMovies(moviesResponse.data.results);
+  };
+
+  const getSeries = async () => {
+    const seriesResponse = await mdbApi.get<ResponsePaginate<TvSerie>>(url);
+    setSeries(seriesResponse.data.results);
   };
   return (
     movies.length > 0 && (
       <div className="px-6">
-        <Swiper slidesPerView="auto" spaceBetween={30}>
+        <Swiper slidesPerView="auto" spaceBetween={12}>
           {movies.map((movie) => {
             return (
               <SwiperSlide key={movie.id} className="w-auto">
                 <img
                   src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
                   alt=""
-                  className="rounded-xl h-[178px]"
+                  className="rounded-xl w-[135px] aspect-[2/3]"
+                />
+              </SwiperSlide>
+            );
+          })}
+
+          {series.map((serie) => {
+            return (
+              <SwiperSlide key={serie.id} className="w-auto">
+                <img
+                  src={`https://image.tmdb.org/t/p/w500${serie.poster_path}`}
+                  alt=""
+                  className="rounded-xl w-[135px] aspect-[2/3]"
                 />
               </SwiperSlide>
             );

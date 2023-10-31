@@ -2,6 +2,7 @@ import legacy from '@vitejs/plugin-legacy'
 import react from '@vitejs/plugin-react'
 import { defineConfig } from 'vite'
 import dotenv from 'dotenv';
+import path from 'path'
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => {
@@ -16,6 +17,11 @@ export default defineConfig(({ mode }) => {
       globals: true,
       environment: 'jsdom',
       setupFiles: './src/setupTests.ts',
+    },
+    resolve: {
+      alias: {
+        '@': path.resolve(__dirname, './src'),
+      },
     },
     define: {
       'process.env': env,

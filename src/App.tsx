@@ -11,7 +11,7 @@ import {
 } from "@ionic/react";
 import { IonReactRouter } from "@ionic/react-router";
 import { person, search, home } from "ionicons/icons";
-import Tab1 from "./pages/Tab1";
+import { HomePage } from "./pages/HomePage/HomePage";
 import Tab2 from "./pages/Tab2";
 import Tab3 from "./pages/Tab3";
 
@@ -33,7 +33,7 @@ import "@ionic/react/css/display.css";
 
 /* Theme variables */
 import "./theme/variables.css";
-import MoviePage from "./pages/movie/MoviePage";
+import MoviePage from "./pages/MoviePage/MoviePage";
 import SeriePage from "./pages/serie/SeriePage";
 
 setupIonicReact({
@@ -43,12 +43,12 @@ setupIonicReact({
 const App: React.FC = () => (
   <IonApp>
     <IonReactRouter>
-      <IonTabs >
+      <IonTabs>
         <IonRouterOutlet>
           <Route exact path="/tab1">
-            <Tab1 />
+            <HomePage />
           </Route>
-          <Route exact path="/tab1/movie/:movieId">
+          <Route exact path="/movie/:movieId">
             <MoviePage />
           </Route>
           <Route exact path="/tab1/serie/:serieId">

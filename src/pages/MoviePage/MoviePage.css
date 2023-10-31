@@ -1,0 +1,17 @@
+.background-poster {
+  background: linear-gradient(180deg, rgba(31, 29, 43, 0.2) 0%, #1f1d2b 100%);
+}
+
+.poster-background {
+  background: lightgray 0px -3.6px / 100% 100.853% no-repeat;
+}
+
+.bg-score {
+  background: rgba(37, 40, 54, 0.32);
+  backdrop-filter: blur(10px);
+}
+
+.toolbar-detail {
+  --padding-start: 24px;
+  --padding-end: 24px;
+}
