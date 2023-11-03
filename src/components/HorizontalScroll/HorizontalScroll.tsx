@@ -6,6 +6,7 @@ import { Movie } from "../../interfaces/movie.interface";
 import { mdbApi } from "../../api/theMovieDbApi";
 import { ResponsePaginate } from "../../interfaces/responsePaginate.interface";
 import { TvSerie } from "../../interfaces/tvSerie.interface";
+import { useIonRouter } from "@ionic/react";
 
 interface Props {
   url: string;
@@ -31,13 +32,20 @@ const HorizontalScroll = ({ url, type }: Props) => {
     const seriesResponse = await mdbApi.get<ResponsePaginate<TvSerie>>(url);
     setSeries(seriesResponse.data.results);
   };
+
+  const router = useIonRouter();
+
   return (
     movies.length > 0 && (
       <div className="px-6">
         <Swiper slidesPerView="auto" spaceBetween={12}>
           {movies.map((movie) => {
             return (
-              <SwiperSlide key={movie.id} className="w-auto">
+              <SwiperSlide
+                key={movie.id}
+                className="w-auto"
+                onClick={() => router.push(`/movie/${movie.id}`)}
+              >
                 <img
                   src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
                   alt=""
