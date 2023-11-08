@@ -28,10 +28,10 @@ const HomePage: React.FC = () => {
   const router = useIonRouter();
 
   useEffect(() => {
-    getMovies();
-    getSeries();
-    getMovieGenres();
-    getTvSeriesGenres();
+    // getMovies();
+    // getSeries();
+    // getMovieGenres();
+    // getTvSeriesGenres();
   }, []);
 
   const getMovies = async () => {
