@@ -6,6 +6,7 @@
 
 * {
   font-family: "Montserrat";
+  letter-spacing: 0.12px;
 }
 
 ion-tab-bar {
@@ -16,6 +17,11 @@ ion-tab-bar {
   color: var(--movies-primary);
 }
 
-ion-tab-bar{
+ion-tab-bar {
   height: 72px;
+}
+
+.background-vote {
+  background: rgba(37, 40, 54, 0.32);
+  backdrop-filter: blur(10px);
 }

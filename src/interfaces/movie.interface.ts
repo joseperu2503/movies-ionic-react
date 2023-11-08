@@ -2,15 +2,15 @@ import { Genre } from "./genre.interface";
 
 export interface Movie {
   adult: boolean;
-  backdrop_path: string;
+  backdrop_path: null | string;
   genre_ids: number[];
   id: number;
   original_language: string;
   original_title: string;
   overview: string;
   popularity: number;
-  poster_path: string;
-  release_date: Date;
+  poster_path: null | string;
+  release_date: string;
   title: string;
   video: boolean;
   vote_average: number;
@@ -62,3 +62,11 @@ export interface SpokenLanguage {
   iso_639_1: string;
   name: string;
 }
+
+// const correctMovies = (movies: Movie[]): Movie[] => {
+//   movies.map(movie => {
+//     if()
+//   })
+
+//   return movies;
+// }

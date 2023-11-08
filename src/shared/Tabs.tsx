@@ -1,5 +1,5 @@
 import { HomePage } from "@/pages/HomePage/HomePage";
-import Tab2 from "@/pages/Tab2";
+import { SearchPage } from "@/pages/SearchPage/SearchPage";
 import Tab3 from "@/pages/Tab3";
 import {
   IonIcon,
@@ -21,8 +21,8 @@ const Tabs: React.FC = () => {
     <IonTabs onIonTabsWillChange={(tab) => setselectedTab(tab.detail.tab)}>
       <IonRouterOutlet>
         <Route exact path="/home" component={HomePage}></Route>
-        <Route exact path="/tab2">
-          <Tab2 />
+        <Route exact path="/search">
+          <SearchPage />
         </Route>
         <Route path="/tab3">
           <Tab3 />
@@ -42,15 +42,15 @@ const Tabs: React.FC = () => {
             )}
           </div>
         </IonTabButton>
-        <IonTabButton tab="tab2" href="/tab2">
+        <IonTabButton tab="search" href="/search">
           <div
             className={
               "px-3 py-2 rounded-2xl flex gap-1 items-center transition-all duration-300 " +
-              (selectedTab == "tab2" && "bg-primary-soft")
+              (selectedTab == "search" && "bg-primary-soft")
             }
           >
             <IonIcon aria-hidden="true" src={searchIcon} className="h-6 w-6" />
-            {selectedTab == "tab2" && (
+            {selectedTab == "search" && (
               <div className="text-xs font-medium tracking-[0.12px]">
                 Search
               </div>
