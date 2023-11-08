@@ -1,7 +1,6 @@
 import {
   IonContent,
   IonHeader,
-  IonIcon,
   IonLabel,
   IonPage,
   IonSegment,
@@ -10,8 +9,7 @@ import {
   SegmentChangeEventDetail,
 } from "@ionic/react";
 import "./SearchPage.css";
-import searchIcon from "@/assets/tabs/search.svg";
-import React, { ChangeEvent, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Movie } from "@/interfaces/movie.interface";
 import { mdbApi } from "@/api/theMovieDbApi";
 import { ResponsePaginate } from "@/interfaces/responsePaginate.interface";
@@ -23,12 +21,14 @@ import { SubscriptionType } from "@/shared/SubscriptionTag/SubscriptionTag";
 import { getDate, getPosterPath, getProfilePath } from "@/utils/utils";
 import { Person } from "@/interfaces/person.interface";
 import { Swiper as SwiperType } from "swiper/types";
+import { SearchInput } from "./components/SearchInput";
+import { PersonSearchItem } from "./components/PersonSearchItem";
 
 const SearchPage = (): JSX.Element => {
-  const [search, setSearch] = useState<string>("");
+  const [searchValue, setSearchValue] = useState<string>("");
 
   const changeSearch = (value: string) => {
-    setSearch(value);
+    setSearchValue(value);
   };
 
   const [movies, setMovies] = useState<Movie[]>([]);
@@ -37,7 +37,6 @@ const SearchPage = (): JSX.Element => {
 
   const searchMovies = async () => {
     const moviesResponse = await searchFunction<Movie>("/search/movie");
-
     setMovies(moviesResponse.results);
   };
 
@@ -56,18 +55,34 @@ const SearchPage = (): JSX.Element => {
   ): Promise<ResponsePaginate<T>> => {
     const response = await mdbApi.get<ResponsePaginate<T>>(url, {
       params: {
-        query: search,
+        query: searchValue,
       },
     });
 
     return response.data;
   };
 
+  const [typingTimeout, setTypingTimeout] = useState<NodeJS.Timeout | null>(
+    null
+  );
+
   useEffect(() => {
-    searchMovies();
-    searchPersons();
-    searchSeries();
-  }, [search]);
+    // Cancela el temporizador existente si se presionó una tecla recientemente
+    if (typingTimeout) {
+      clearTimeout(typingTimeout);
+    }
+
+    // Establece un nuevo temporizador que ejecutará la acción después de 500ms de inactividad
+    setTypingTimeout(
+      setTimeout(() => {
+        if (searchValue.length != 0) {
+          searchMovies();
+          searchPersons();
+          searchSeries();
+        }
+      }, 500)
+    );
+  }, [searchValue]);
 
   const [segmentActive, setSegmentActive] = useState(0);
   const onChangeSwiper = (swiper: SwiperType) => {
@@ -86,52 +101,33 @@ const SearchPage = (): JSX.Element => {
     <IonPage>
       <IonHeader>
         <IonToolbar>
-          <div className="flex items-center gap-2">
-            <div className="w-full h-[41px] bg-primary-soft rounded-full flex items-center px-4 py-3 gap-2">
-              <IonIcon
-                aria-hidden="true"
-                src={searchIcon}
-                className="h-6 w-6"
-              />
-              <input
-                type="text"
-                placeholder="Type title, categories, years, etc"
-                value={search}
-                onInput={(event: ChangeEvent<HTMLInputElement>) =>
-                  changeSearch(event.target.value)
-                }
-                className="bg-transparent outline-none text-sm font-medium tracking-[0.12px] placeholder:text-grey text-white w-full"
-              />
-            </div>
-            {search.length > 0 && (
-              <div
-                className="tracking-[0.12px] text-white"
-                onClick={() => changeSearch("")}
-              >
-                Cancel
-              </div>
-            )}
-          </div>
+          <SearchInput
+            searchValue={searchValue}
+            changeSearchValue={changeSearch}
+          />
         </IonToolbar>
       </IonHeader>
       <IonContent fullscreen>
         <div className="h-full pt-6">
-          <IonSegment
-            value={segmentActive}
-            color={"secondary"}
-            scrollable={true}
-            onIonChange={onChangeSegment}
-          >
-            <IonSegmentButton value={0}>
-              <IonLabel>Movies</IonLabel>
-            </IonSegmentButton>
-            <IonSegmentButton value={1}>
-              <IonLabel>Tv </IonLabel>
-            </IonSegmentButton>
-            <IonSegmentButton value={2}>
-              <IonLabel>Persons </IonLabel>
-            </IonSegmentButton>
-          </IonSegment>
+          {searchValue.length > 0 && (
+            <IonSegment
+              value={segmentActive}
+              color="secondary"
+              scrollable={true}
+              onIonChange={onChangeSegment}
+            >
+              <IonSegmentButton value={0}>
+                <IonLabel>Movies</IonLabel>
+              </IonSegmentButton>
+              <IonSegmentButton value={1}>
+                <IonLabel>Tv </IonLabel>
+              </IonSegmentButton>
+              <IonSegmentButton value={2}>
+                <IonLabel>Persons </IonLabel>
+              </IonSegmentButton>
+            </IonSegment>
+          )}
+
           <div className="h-full overflow-hidden">
             <Swiper
               slidesPerView={1}
@@ -182,13 +178,7 @@ const SearchPage = (): JSX.Element => {
                   <div className="flex flex-col gap-4">
                     {persons.map((person) => {
                       return (
-                        <div className="flex gap-2 items-center">
-                          <img
-                            src={getProfilePath(person.profile_path)}
-                            className="w-12 h-12 object-cover rounded-full"
-                          />
-                          <div>{person.name}</div>
-                        </div>
+                        <PersonSearchItem person={person} key={person.id} />
                       );
                     })}
                   </div>

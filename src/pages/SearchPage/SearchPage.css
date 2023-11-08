@@ -3,3 +3,26 @@ ion-toolbar {
   --padding-start: 24px;
   --padding-end: 24px;
 }
+
+ion-segment {
+  background: var(--movies-background);
+}
+
+ion-segment-button {
+  color: var(--movies-white-grey);
+  font-size: 12px;
+  font-weight: 500;
+}
+
+ion-segment-button.segment-button-checked {
+  color: var(--movies-primary);
+}
+
+ion-segment-button::part(indicator-background) {
+  background: var(--movies-primary-soft) !important;
+  border-radius: 8px;
+}
+
+ion-segment-button::part(indicator) {
+  color: red;
+}
