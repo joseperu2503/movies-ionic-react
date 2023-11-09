@@ -1,6 +1,5 @@
 import { HomePage } from "@/pages/HomePage/HomePage";
 import { SearchPage } from "@/pages/SearchPage/SearchPage";
-import Tab3 from "@/pages/Tab3";
 import {
   IonIcon,
   IonRouterOutlet,
@@ -13,6 +12,7 @@ import homeIcon from "@/assets/tabs/home.svg";
 import searchIcon from "@/assets/tabs/search.svg";
 import personIcon from "@/assets/tabs/person.svg";
 import { useState } from "react";
+import { ProfilePage } from "@/pages/ProfilePage/ProfilePage";
 
 const Tabs: React.FC = () => {
   const [selectedTab, setselectedTab] = useState("home");
@@ -24,8 +24,8 @@ const Tabs: React.FC = () => {
         <Route exact path="/search">
           <SearchPage />
         </Route>
-        <Route path="/tab3">
-          <Tab3 />
+        <Route path="/profile">
+          <ProfilePage />
         </Route>
       </IonRouterOutlet>
       <IonTabBar slot="bottom">
@@ -57,15 +57,15 @@ const Tabs: React.FC = () => {
             )}
           </div>
         </IonTabButton>
-        <IonTabButton tab="tab3" href="/tab3">
+        <IonTabButton tab="profile" href="/profile">
           <div
             className={
               "px-3 py-2 rounded-2xl flex gap-1 items-center transition-all duration-300 " +
-              (selectedTab == "tab3" && "bg-primary-soft")
+              (selectedTab == "profile" && "bg-primary-soft")
             }
           >
             <IonIcon aria-hidden="true" src={personIcon} className="h-6 w-6" />
-            {selectedTab == "tab3" && (
+            {selectedTab == "profile" && (
               <div className="text-xs font-medium tracking-[0.12px]">
                 Profile
               </div>

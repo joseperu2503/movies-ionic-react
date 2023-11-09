@@ -246,4 +246,6 @@ http://ionicframework.com/docs/theming/ */
   --movies-secondary: #ff8700;
   --movies-white-grey: #ebebef;
   --movies-primary-soft: #252836;
+
+  --ion-color-primary: var(--movies-primary);
 }
