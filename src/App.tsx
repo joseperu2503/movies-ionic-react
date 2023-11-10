@@ -23,6 +23,7 @@ import "./theme/variables.css";
 import MoviePage from "@/pages/MoviePage/MoviePage";
 import SeriePage from "@/pages/serie/SeriePage";
 import { Tabs } from "@/shared/Tabs";
+import { HomePage } from "./pages/HomePage/HomePage";
 
 setupIonicReact({
   mode: "ios",
@@ -33,9 +34,7 @@ const App: React.FC = () => {
     <IonApp>
       <IonReactRouter>
         <IonRouterOutlet>
-          <Route exact path="/">
-            <Redirect to="/home" />
-          </Route>
+          <Route path="/" component={HomePage}></Route>
           <Route exact path="/:id">
             <Tabs></Tabs>
           </Route>

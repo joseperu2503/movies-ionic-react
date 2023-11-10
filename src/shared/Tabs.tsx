@@ -1,6 +1,6 @@
 import { HomeTabPage } from "@/pages/HomeTabPage/HomeTabPage";
 import { SearchTabPage } from "@/pages/SearchTabPage/SearchTabPage";
-import { ProfileTabPage } from "@/pages/ProfileTabPage/ProfilePage";
+import { ProfileTabPage } from "@/pages/ProfileTabPage/ProfileTabPage";
 
 import {
   IonIcon,
