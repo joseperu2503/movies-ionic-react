@@ -21,9 +21,9 @@ const Tabs: React.FC = () => {
   return (
     <IonTabs onIonTabsWillChange={(tab) => setselectedTab(tab.detail.tab)}>
       <IonRouterOutlet>
-        <Route exact path="/home" component={HomeTabPage}></Route>
-        <Route exact path="/search" component={SearchTabPage}></Route>
-        <Route path="/profile" component={ProfileTabPage}></Route>
+        <Route exact path="/tabs/home" component={HomeTabPage}></Route>
+        <Route exact path="/tabs/search" component={SearchTabPage}></Route>
+        <Route exact path="/tabs/profile" component={ProfileTabPage}></Route>
       </IonRouterOutlet>
       <IonTabBar slot="bottom">
         <IonTabButton tab="home" href="/home">

@@ -4,6 +4,7 @@ import {
   IonIcon,
   IonPage,
   IonRippleEffect,
+  useIonRouter,
 } from "@ionic/react";
 import googleIcon from "@/assets/home/google.svg";
 import appleIcon from "@/assets/home/apple.svg";
@@ -11,6 +12,9 @@ import facebookIcon from "@/assets/home/facebook.svg";
 import logoIcon from "@/assets/logo.svg";
 
 const HomePage = () => {
+
+  const router = useIonRouter();
+
   return (
     <IonPage>
       <IonContent fullscreen>
@@ -37,6 +41,7 @@ const HomePage = () => {
               expand="block"
               fill="clear"
               className="h-14 font-medium w-full mt-4"
+              onClick={() => router.push(`/login`)}
             >
               <div className="text-grey font-medium">
                 <span>I already have an account? </span>
