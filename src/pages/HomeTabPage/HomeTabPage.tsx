@@ -1,15 +1,10 @@
 import {
-  IonButtons,
   IonContent,
   IonHeader,
   IonPage,
-  IonRouterLink,
-  IonSearchbar,
-  IonTitle,
   IonToolbar,
   useIonRouter,
 } from "@ionic/react";
-import "./HomePage.css";
 import { useEffect, useState } from "react";
 import { mdbApi } from "../../api/theMovieDbApi";
 import { ResponsePaginate } from "../../interfaces/responsePaginate.interface";
@@ -20,7 +15,7 @@ import { Slideshow } from "../../components/Slideshow/Slideshow";
 import { HorizontalScroll } from "../../components/HorizontalScroll/HorizontalScroll";
 import { Icon } from "@iconify/react";
 
-const HomePage: React.FC = () => {
+const HomeTabPage: React.FC = () => {
   const [movies, setMovies] = useState<Movie[]>([]);
   const [series, setSeries] = useState<TvSerie[]>([]);
   const [movieGenres, setMovieGenres] = useState<Genre[]>([]);
@@ -138,4 +133,4 @@ const HomePage: React.FC = () => {
   );
 };
 
-export { HomePage };
+export { HomeTabPage };

@@ -21,7 +21,7 @@ import questionIcon from "@/assets/profile/question.svg";
 import informationIcon from "@/assets/profile/information.svg";
 import { Divider } from "./components/Divider";
 
-const ProfilePage: React.FC = () => {
+const ProfileTabPage: React.FC = () => {
   return (
     <IonPage>
       <IonHeader translucent={true} className="ion-no-border">
@@ -136,4 +136,4 @@ const ProfilePage: React.FC = () => {
   );
 };
 
-export { ProfilePage };
+export { ProfileTabPage };

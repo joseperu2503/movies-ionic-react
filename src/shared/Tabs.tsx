@@ -1,5 +1,7 @@
-import { HomePage } from "@/pages/HomePage/HomePage";
-import { SearchPage } from "@/pages/SearchPage/SearchPage";
+import { HomeTabPage } from "@/pages/HomeTabPage/HomeTabPage";
+import { SearchTabPage } from "@/pages/SearchTabPage/SearchTabPage";
+import { ProfileTabPage } from "@/pages/ProfileTabPage/ProfilePage";
+
 import {
   IonIcon,
   IonRouterOutlet,
@@ -7,12 +9,11 @@ import {
   IonTabButton,
   IonTabs,
 } from "@ionic/react";
-import { Redirect, Route } from "react-router";
+import { Route } from "react-router";
 import homeIcon from "@/assets/tabs/home.svg";
 import searchIcon from "@/assets/tabs/search.svg";
 import personIcon from "@/assets/tabs/person.svg";
 import { useState } from "react";
-import { ProfilePage } from "@/pages/ProfilePage/ProfilePage";
 
 const Tabs: React.FC = () => {
   const [selectedTab, setselectedTab] = useState("home");
@@ -20,13 +21,9 @@ const Tabs: React.FC = () => {
   return (
     <IonTabs onIonTabsWillChange={(tab) => setselectedTab(tab.detail.tab)}>
       <IonRouterOutlet>
-        <Route exact path="/home" component={HomePage}></Route>
-        <Route exact path="/search">
-          <SearchPage />
-        </Route>
-        <Route path="/profile">
-          <ProfilePage />
-        </Route>
+        <Route exact path="/home" component={HomeTabPage}></Route>
+        <Route exact path="/search" component={SearchTabPage}></Route>
+        <Route path="/profile" component={ProfileTabPage}></Route>
       </IonRouterOutlet>
       <IonTabBar slot="bottom">
         <IonTabButton tab="home" href="/home">
