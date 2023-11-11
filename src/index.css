@@ -25,3 +25,7 @@ ion-tab-bar {
   background: rgba(37, 40, 54, 0.32);
   backdrop-filter: blur(10px);
 }
+
+.safe-area-top {
+  padding-top: var(--ion-safe-area-top) !important;
+}

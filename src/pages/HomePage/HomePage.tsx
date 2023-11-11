@@ -1,9 +1,11 @@
 import {
   IonButton,
   IonContent,
+  IonHeader,
   IonIcon,
   IonPage,
   IonRippleEffect,
+  IonToolbar,
   useIonRouter,
 } from "@ionic/react";
 import googleIcon from "@/assets/home/google.svg";
@@ -12,12 +14,11 @@ import facebookIcon from "@/assets/home/facebook.svg";
 import logoIcon from "@/assets/logo.svg";
 
 const HomePage = () => {
-
   const router = useIonRouter();
 
   return (
-    <IonPage>
-      <IonContent fullscreen>
+    <IonPage className="safe-area-top">
+      <IonContent>
         <div className="px-6 flex items-center h-full w-full">
           <div className="flex flex-col items-center w-full">
             <IonIcon src={logoIcon} className="w-20 h-20" />

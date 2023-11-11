@@ -25,12 +25,43 @@ import SeriePage from "@/pages/serie/SeriePage";
 import { Tabs } from "@/shared/Tabs";
 import { HomePage } from "./pages/HomePage/HomePage";
 import { LoginPage } from "./pages/LoginPage/LoginPage";
+import { StatusBar, Style } from "@capacitor/status-bar";
+import { isPlatform } from "@ionic/react";
+import { useEffect } from "react";
+import { SafeArea } from "capacitor-plugin-safe-area";
 
 setupIonicReact({
   mode: "ios",
 });
 
+interface SafeAreaInterface {
+  top: number;
+  right: number;
+  bottom: number;
+  left: number;
+}
+
 const App: React.FC = () => {
+  useEffect(() => {
+    if (isPlatform("capacitor")) {
+      //statusbar transparente
+      StatusBar.setOverlaysWebView({ overlay: true });
+    }
+
+    SafeArea.getSafeAreaInsets().then(({ insets }) => {
+      setInsets(insets);
+    });
+
+    const setInsets = (insets: SafeAreaInterface) => {
+      for (const [key, value] of Object.entries(insets)) {
+        document.documentElement.style.setProperty(
+          `--ion-safe-area-${key}`,
+          `${value}px`
+        );
+      }
+    };
+  }, []);
+
   return (
     <IonApp>
       <IonReactRouter>
