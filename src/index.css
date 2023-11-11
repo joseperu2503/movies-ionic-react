@@ -29,3 +29,10 @@ ion-tab-bar {
 .safe-area-top {
   padding-top: var(--ion-safe-area-top) !important;
 }
+
+ion-toolbar {
+  --padding-top: 4px;
+  --padding-start: 24px;
+  --padding-end: 24px;
+  --min-height: 48px;
+}

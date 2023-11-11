@@ -17,6 +17,9 @@ export default {
       height: {
         15: '3.75rem',
       },
+      margin: {
+        18: '4.5rem',
+      },
     },
   },
   plugins: [],

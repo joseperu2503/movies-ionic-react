@@ -1,14 +1,18 @@
-import { ChangeEventHandler, useState } from "react";
+import { ChangeEventHandler, HTMLInputTypeAttribute, useState } from "react";
+import eyeIcon from "@/assets/eye.svg";
+import eyeOffIcon from "@/assets/eye-off.svg";
+import { IonIcon, IonRippleEffect } from "@ionic/react";
 
 interface Props {
   value: string;
   onChange: ChangeEventHandler<HTMLInputElement>;
   label: string;
+  type?: HTMLInputTypeAttribute;
 }
 
-const CustomInput = ({ value, onChange, label }: Props) => {
+const CustomInput = ({ value, onChange, label, type = "text" }: Props) => {
   const [isFocused, setIsFocused] = useState<boolean>(false);
-
+  const [showText, setShowText] = useState<boolean>(false);
   const handleFocus = () => {
     setIsFocused(true);
   };
@@ -20,11 +24,11 @@ const CustomInput = ({ value, onChange, label }: Props) => {
   return (
     <div
       className={
-        "h-15 border rounded-3xl pl-3 pr-4 flex items-center w-full " +
+        "h-15 border rounded-3xl pl-3 pr-2 flex items-center w-full " +
         (isFocused ? "border-primary" : "border-primary-soft")
       }
     >
-      <div className="relative z-10 h-full">
+      <div className="relative z-10 h-full flex items-center w-full">
         <div
           className={
             "absolute bg-primary-dark px-1 -z-10 transition-all " +
@@ -36,14 +40,28 @@ const CustomInput = ({ value, onChange, label }: Props) => {
           {label}
         </div>
         <input
-          type="text"
+          type={type == "password" && showText ? "text" : type}
           onFocus={handleFocus}
           onBlur={handleBlur}
           value={value}
           onChange={onChange}
-          // placeholder={isFocused ? "Input is focused" : "Input is not focused"}
-          className="bg-transparent outline-none w-full h-full ml-1 font-medium text-sm text-grey"
+          className="bg-transparent outline-none w-full h-full ml-1 font-medium text-sm text-grey flex-1"
         />
+        {type == "password" ? (
+          <div
+            className="ion-activatable relative overflow-hidden rounded-full w-10 h-10 flex justify-center items-center"
+            onClick={() => setShowText(!showText)}
+          >
+            {showText ? (
+              <IonIcon src={eyeIcon} className="text-grey w-6 h-6" />
+            ) : (
+              <IonIcon src={eyeOffIcon} className="text-grey w-6 h-6" />
+            )}
+            <IonRippleEffect></IonRippleEffect>
+          </div>
+        ) : (
+          <div className="pr-2"></div>
+        )}
       </div>
     </div>
   );
