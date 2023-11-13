@@ -1,11 +1,9 @@
 import {
   IonButton,
   IonContent,
-  IonHeader,
   IonIcon,
   IonPage,
   IonRippleEffect,
-  IonToolbar,
   useIonRouter,
 } from "@ionic/react";
 import googleIcon from "@/assets/home/google.svg";

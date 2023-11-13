@@ -5,6 +5,7 @@ import {
   IonPage,
   IonTitle,
   IonToolbar,
+  useIonRouter,
 } from "@ionic/react";
 import { CustomInput } from "@/components/CustomInput/CustomInput";
 import { ChangeEvent, useState } from "react";
@@ -22,6 +23,8 @@ const LoginPage = () => {
     setPassword(event.target.value);
   };
 
+  const router = useIonRouter();
+
   return (
     <IonPage>
       <IonHeader className="ion-no-border" collapse="fade">
@@ -36,22 +39,22 @@ const LoginPage = () => {
         <div className="px-6 py-8">
           <div className="flex flex-col items-center w-full">
             <div className="text-2xl font-semibold mb-2">Hi, Tiffany</div>
-            <span className="text-xs font-medium text-grey w-64 text-center">
+            <span className="text-xs font-medium text-white-grey w-64 text-center">
               Welcome back! Please enter
             </span>
-            <span className="text-xs font-medium text-grey w-64 text-center">
+            <span className="text-xs font-medium text-white-grey w-64 text-center">
               your details.
             </span>
             <div className="mt-18 w-full">
               <CustomInput
                 value={email}
                 onChange={onChangeEmail}
-                label="Email"
+                label="Email Address"
                 type="email"
               />
             </div>
 
-            <div className="mt-8 w-full">
+            <div className="mt-8 w-full mb-2">
               <CustomInput
                 value={password}
                 onChange={onChangePassword}
@@ -59,8 +62,13 @@ const LoginPage = () => {
                 type="password"
               />
             </div>
-            <div className="text-xs font-medium text-primary text-end w-full mt-2">
-              Forgot Password?
+            <div className="flex justify-end w-full">
+              <span
+                onClick={() => router.push(`/reset-password`)}
+                className="text-xs font-medium text-primary"
+              >
+                Forgot Password?
+              </span>
             </div>
             <IonButton
               shape="round"

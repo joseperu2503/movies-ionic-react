@@ -43,10 +43,10 @@ const SignUpPage = () => {
         <div className="px-6 py-8">
           <div className="flex flex-col items-center w-full">
             <div className="text-2xl font-semibold mb-2">Let’s get started</div>
-            <span className="text-xs font-medium text-grey w-64 text-center">
+            <span className="text-xs font-medium text-white-grey w-64 text-center">
               The latest movies and series
             </span>
-            <span className="text-xs font-medium text-grey w-64 text-center">
+            <span className="text-xs font-medium text-white-grey w-64 text-center">
               are here
             </span>
             <div className="mt-18 w-full">
@@ -60,7 +60,7 @@ const SignUpPage = () => {
               <CustomInput
                 value={email}
                 onChange={onChangeEmail}
-                label="Email"
+                label="Email Address"
                 type="email"
               />
             </div>
