@@ -3,7 +3,7 @@ import starIcon from "@/assets/star.svg";
 import {
   SubscriptionTag,
   SubscriptionType,
-} from "@/shared/SubscriptionTag/SubscriptionTag";
+} from "@/components/SubscriptionTag/SubscriptionTag";
 
 interface Props {
   title: string;

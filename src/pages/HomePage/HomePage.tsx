@@ -34,6 +34,7 @@ const HomePage = () => {
               shape="round"
               expand="block"
               className="h-14 font-medium w-full mt-16"
+              onClick={() => router.push(`/signup`)}
             >
               Sign Up
             </IonButton>

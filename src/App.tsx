@@ -29,6 +29,7 @@ import { StatusBar, Style } from "@capacitor/status-bar";
 import { isPlatform } from "@ionic/react";
 import { useEffect } from "react";
 import { SafeArea } from "capacitor-plugin-safe-area";
+import { SignUpPage } from "./pages/SignUpPage/SignUpPage";
 
 setupIonicReact({
   mode: "ios",
@@ -67,6 +68,7 @@ const App: React.FC = () => {
       <IonReactRouter>
         <IonRouterOutlet>
           <Route exact path="/login" component={LoginPage}></Route>
+          <Route exact path="/signup" component={SignUpPage}></Route>
           <Route exact path="/movie/:movieId" component={MoviePage}></Route>
           <Route exact path="/tabs/:id">
             <Tabs></Tabs>

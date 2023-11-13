@@ -16,7 +16,7 @@ import { ResponsePaginate } from "@/interfaces/responsePaginate.interface";
 import { Swiper, SwiperRef, SwiperSlide } from "swiper/react";
 import { TvSerie } from "@/interfaces/tvSerie.interface";
 import { MovieSerieSearchItem } from "./components/MovieSerieSearchItem";
-import { SubscriptionType } from "@/shared/SubscriptionTag/SubscriptionTag";
+import { SubscriptionType } from "@/components/SubscriptionTag/SubscriptionTag";
 import { getDate, getPosterPath, getProfilePath } from "@/utils/utils";
 import { Person } from "@/interfaces/person.interface";
 import { Swiper as SwiperType } from "swiper/types";
