@@ -3,13 +3,11 @@ import {
   IonContent,
   IonHeader,
   IonPage,
-  IonTitle,
   IonToolbar,
 } from "@ionic/react";
 import { CustomInput } from "@/components/CustomInput/CustomInput";
 import { ChangeEvent, useState } from "react";
 import BackButton from "@/components/BackButton/BackButton";
-import Checkbox from "@/components/Checkbox/Checkbox";
 
 const ResetPasswordPage = () => {
   const [email, setEmail] = useState("");
