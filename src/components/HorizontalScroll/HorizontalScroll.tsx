@@ -36,7 +36,7 @@ const HorizontalScroll = ({ url, type }: Props) => {
   const router = useIonRouter();
 
   return (
-    movies.length > 0 && (
+    (movies.length > 0 || series.length > 0) && (
       <div className="px-6">
         <Swiper slidesPerView="auto" spaceBetween={12}>
           {movies.map((movie) => {
