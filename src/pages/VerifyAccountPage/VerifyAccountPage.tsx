@@ -4,6 +4,7 @@ import {
   IonHeader,
   IonPage,
   IonToolbar,
+  useIonRouter,
 } from "@ionic/react";
 import { useState } from "react";
 import BackButton from "@/components/BackButton/BackButton";
@@ -14,6 +15,8 @@ const VerifyAccountPage = () => {
   const onChangeCode = (value: string) => {
     setCode(value);
   };
+
+  const router = useIonRouter();
 
   return (
     <IonPage>
@@ -43,8 +46,9 @@ const VerifyAccountPage = () => {
               expand="block"
               className="h-14 font-medium w-full mt-16"
               type="button"
+              onClick={() => router.push(`/create-new-password`)}
             >
-              Next
+              Continue
             </IonButton>
             <IonButton
               shape="round"
