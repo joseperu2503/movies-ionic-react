@@ -4,6 +4,7 @@ import {
   IonHeader,
   IonPage,
   IonToolbar,
+  useIonRouter,
 } from "@ionic/react";
 import { CustomInput } from "@/components/CustomInput/CustomInput";
 import { ChangeEvent, useState } from "react";
@@ -15,6 +16,8 @@ const ResetPasswordPage = () => {
   const onChangeEmail = (event: ChangeEvent<HTMLInputElement>) => {
     setEmail(event.target.value);
   };
+
+  const router = useIonRouter();
 
   return (
     <IonPage>
@@ -46,6 +49,7 @@ const ResetPasswordPage = () => {
               shape="round"
               expand="block"
               className="h-14 font-medium w-full mt-10"
+              onClick={() => router.push(`/verify-account`)}
             >
               Next
             </IonButton>

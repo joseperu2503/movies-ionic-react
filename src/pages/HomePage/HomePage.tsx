@@ -43,7 +43,7 @@ const HomePage = () => {
               className="h-14 font-medium w-full mt-4"
               onClick={() => router.push(`/login`)}
             >
-              <div className="text-grey font-medium">
+              <div className="text-grey font-medium text-base">
                 <span>I already have an account? </span>
                 <span className="text-primary font-semibold">Login</span>
               </div>

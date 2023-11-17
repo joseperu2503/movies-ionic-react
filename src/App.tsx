@@ -31,6 +31,7 @@ import { useEffect } from "react";
 import { SafeArea } from "capacitor-plugin-safe-area";
 import { SignUpPage } from "./pages/SignUpPage/SignUpPage";
 import { ResetPasswordPage } from "./pages/ResetPasswordPage/ResetPasswordPage";
+import { VerifyAccountPage } from "./pages/VerifyAccountPage/VerifyAccountPage";
 
 setupIonicReact({
   mode: "ios",
@@ -74,6 +75,11 @@ const App: React.FC = () => {
             exact
             path="/reset-password"
             component={ResetPasswordPage}
+          ></Route>
+          <Route
+            exact
+            path="/verify-account"
+            component={VerifyAccountPage}
           ></Route>
           <Route exact path="/movie/:movieId" component={MoviePage}></Route>
           <Route exact path="/tabs/:id">
