@@ -71,6 +71,13 @@ const SearchTabPage = (): JSX.Element => {
       clearTimeout(typingTimeout);
     }
 
+    if (searchValue.length == 0) {
+      setMovies([]);
+      setPersons([]);
+      setSeries([]);
+      return;
+    }
+
     // Establece un nuevo temporizador que ejecutará la acción después de 500ms de inactividad
     setTypingTimeout(
       setTimeout(() => {
@@ -98,33 +105,37 @@ const SearchTabPage = (): JSX.Element => {
 
   return (
     <IonPage>
-      <IonHeader>
+      <IonHeader className="ion-no-border">
         <IonToolbar>
-          <SearchInput
-            searchValue={searchValue}
-            changeSearchValue={changeSearch}
-          />
+          <div className="py-2">
+            <SearchInput
+              searchValue={searchValue}
+              changeSearchValue={changeSearch}
+            />
+          </div>
         </IonToolbar>
       </IonHeader>
       <IonContent fullscreen>
         <div className="h-full pt-6">
           {searchValue.length > 0 && (
-            <IonSegment
-              value={segmentActive}
-              color="secondary"
-              scrollable={true}
-              onIonChange={onChangeSegment}
-            >
-              <IonSegmentButton value={0}>
-                <IonLabel>Movies</IonLabel>
-              </IonSegmentButton>
-              <IonSegmentButton value={1}>
-                <IonLabel>Tv </IonLabel>
-              </IonSegmentButton>
-              <IonSegmentButton value={2}>
-                <IonLabel>Persons </IonLabel>
-              </IonSegmentButton>
-            </IonSegment>
+            <div className="px-6">
+              <IonSegment
+                value={segmentActive}
+                color="secondary"
+                scrollable={true}
+                onIonChange={onChangeSegment}
+              >
+                <IonSegmentButton value={0}>
+                  <IonLabel>Movies</IonLabel>
+                </IonSegmentButton>
+                <IonSegmentButton value={1}>
+                  <IonLabel>Tv </IonLabel>
+                </IonSegmentButton>
+                <IonSegmentButton value={2}>
+                  <IonLabel>Persons </IonLabel>
+                </IonSegmentButton>
+              </IonSegment>
+            </div>
           )}
 
           <div className="h-full overflow-hidden">
