@@ -26,7 +26,7 @@ const Tabs: React.FC = () => {
         <Route exact path="/tabs/profile" component={ProfileTabPage}></Route>
       </IonRouterOutlet>
       <IonTabBar slot="bottom">
-        <IonTabButton tab="home" href="/home">
+        <IonTabButton tab="home" href="/tabs/home">
           <div
             className={
               "px-3 py-2 rounded-2xl flex gap-1 items-center transition-all duration-300 " +
@@ -39,7 +39,7 @@ const Tabs: React.FC = () => {
             )}
           </div>
         </IonTabButton>
-        <IonTabButton tab="search" href="/search">
+        <IonTabButton tab="search" href="/tabs/search">
           <div
             className={
               "px-3 py-2 rounded-2xl flex gap-1 items-center transition-all duration-300 " +
@@ -54,7 +54,7 @@ const Tabs: React.FC = () => {
             )}
           </div>
         </IonTabButton>
-        <IonTabButton tab="profile" href="/profile">
+        <IonTabButton tab="profile" href="/tabs/profile">
           <div
             className={
               "px-3 py-2 rounded-2xl flex gap-1 items-center transition-all duration-300 " +

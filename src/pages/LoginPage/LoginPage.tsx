@@ -74,6 +74,7 @@ const LoginPage = () => {
               shape="round"
               expand="block"
               className="h-14 font-medium w-full mt-10"
+              onClick={() => router.push(`/tabs/home`)}
             >
               Login
             </IonButton>

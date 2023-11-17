@@ -52,7 +52,7 @@ const CreateNewPasswordPage = () => {
               expand="block"
               className="h-14 font-medium w-full mt-10"
               type="button"
-              onClick={() => router.push(`/`, "root", "replace")}
+              onClick={() => router.push(`/`)}
             >
               Reset
             </IonButton>
