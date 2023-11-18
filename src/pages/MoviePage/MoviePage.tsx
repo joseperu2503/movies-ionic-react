@@ -21,6 +21,7 @@ import downloadIcon from "@/assets/download.svg";
 import shareIcon from "@/assets/share.svg";
 import arrowBackIcon from "@/assets/arrow-back.svg";
 import heartIcon from "@/assets/heart.svg";
+import BackButton from "@/components/BackButton/BackButton";
 
 const MoviePage: React.FC = () => {
   const { movieId } = useParams<{ movieId: string }>();
@@ -49,13 +50,7 @@ const MoviePage: React.FC = () => {
     <IonPage>
       <IonHeader className="ion-no-border" collapse="fade">
         <IonToolbar className="toolbar-detail">
-          <IonButtons slot="start">
-            <img
-              src={arrowBackIcon}
-              alt="arrow-back-icon"
-              className="w-6 h-6 "
-            />
-          </IonButtons>
+          <BackButton />
           <IonTitle>
             <span className="text-base font-semibold tracking-[0.12px]">
               {movie?.title}

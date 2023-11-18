@@ -15,7 +15,7 @@ import { mdbApi } from "@/api/theMovieDbApi";
 import { ResponsePaginate } from "@/interfaces/responsePaginate.interface";
 import { Swiper, SwiperRef, SwiperSlide } from "swiper/react";
 import { TvSerie } from "@/interfaces/tvSerie.interface";
-import { MovieSerieSearchItem } from "./components/MovieSerieSearchItem";
+import { MovieSerieItem } from "@/components/MovieSerieItem/MovieSerieItem";
 import { SubscriptionType } from "@/components/SubscriptionTag/SubscriptionTag";
 import { getDate, getPosterPath, getProfilePath } from "@/utils/utils";
 import { Person } from "@/interfaces/person.interface";
@@ -150,7 +150,7 @@ const SearchTabPage = (): JSX.Element => {
                   <div className="flex flex-col gap-4">
                     {movies.map((movie) => {
                       return (
-                        <MovieSerieSearchItem
+                        <MovieSerieItem
                           title={movie.title}
                           key={movie.id}
                           overview={movie.overview}
@@ -169,7 +169,7 @@ const SearchTabPage = (): JSX.Element => {
                   <div className="flex flex-col gap-4">
                     {series.map((serie) => {
                       return (
-                        <MovieSerieSearchItem
+                        <MovieSerieItem
                           title={serie.name}
                           key={serie.id}
                           overview={serie.overview}

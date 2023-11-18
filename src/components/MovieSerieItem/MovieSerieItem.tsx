@@ -14,7 +14,7 @@ interface Props {
   voteAverage: number;
 }
 
-const MovieSerieSearchItem = ({
+const MovieSerieItem = ({
   title,
   posterPath,
   year,
@@ -54,4 +54,4 @@ const MovieSerieSearchItem = ({
   );
 };
 
-export { MovieSerieSearchItem };
+export { MovieSerieItem };

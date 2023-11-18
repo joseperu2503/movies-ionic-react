@@ -76,7 +76,12 @@ const HomeTabPage: React.FC = () => {
         </div>
         <div className="flex justify-between px-6 mt-6">
           <span className="font-semibold text-white">Popular</span>
-          <span className="text-sm text-primary font-medium">See All</span>
+          <span
+            className="text-sm text-primary font-medium"
+            onClick={() => router.push("/popular-movies")}
+          >
+            See All
+          </span>
         </div>
         <div className="mt-4">
           <HorizontalScroll
