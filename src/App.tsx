@@ -33,7 +33,7 @@ import { SignUpPage } from "./pages/SignUpPage/SignUpPage";
 import { ResetPasswordPage } from "./pages/ResetPasswordPage/ResetPasswordPage";
 import { VerifyAccountPage } from "./pages/VerifyAccountPage/VerifyAccountPage";
 import { CreateNewPasswordPage } from "./pages/CreateNewPassword/CreateNewPasswordPage";
-import { PopularMoviesPage } from "./pages/movies/PopularMoviesPage/PopularMoviesPage";
+import { MoviesByCategory } from "./pages/movies/MoviesByCategory/MoviesByCategory";
 
 setupIonicReact({
   mode: "ios",
@@ -89,12 +89,12 @@ const App: React.FC = () => {
             component={CreateNewPasswordPage}
           ></Route>
           <Route exact path="/movie/:movieId" component={MoviePage}></Route>
-          <Route
-            exact
-            path="/popular-movies"
-            component={PopularMoviesPage}
-          ></Route>
-
+          <Route exact path="/popular-movies">
+            <MoviesByCategory url="/movie/popular"></MoviesByCategory>
+          </Route>
+          <Route exact path="/popular-movies">
+            <MoviesByCategory url="/movie/popular"></MoviesByCategory>
+          </Route>
           <Route exact path="/tabs/:id">
             <Tabs></Tabs>
           </Route>

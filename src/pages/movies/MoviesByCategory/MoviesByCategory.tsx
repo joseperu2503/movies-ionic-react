@@ -17,24 +17,26 @@ import { MovieSerieItem } from "@/components/MovieSerieItem/MovieSerieItem";
 import { getDate, getPosterPath } from "@/utils/utils";
 import { SubscriptionType } from "@/components/SubscriptionTag/SubscriptionTag";
 
-const PopularMoviesPage = () => {
+interface Props {
+  url: string;
+  params?: Object;
+}
+
+const MoviesByCategory = ({ url, params }: Props) => {
   const [movies, setMovies] = useState<Movie[]>([]);
   const [page, setPage] = useState<number>(1);
   const [totalPages, setTotalPages] = useState<number>(1);
   const [loading, setLoading] = useState<boolean>(false);
 
   const getMovies = async () => {
-    console.log(page, totalPages, loading);
     if (page <= totalPages && !loading) {
       setLoading(true);
-      const moviesResponse = await mdbApi.get<ResponsePaginate<Movie>>(
-        "/movie/popular",
-        {
-          params: {
-            page: page,
-          },
-        }
-      );
+      const moviesResponse = await mdbApi.get<ResponsePaginate<Movie>>(url, {
+        params: {
+          page: page,
+          ...params,
+        },
+      });
       setPage(page + 1);
       setTotalPages(moviesResponse.data.total_pages);
 
@@ -91,4 +93,4 @@ const PopularMoviesPage = () => {
   );
 };
 
-export { PopularMoviesPage };
+export { MoviesByCategory };
