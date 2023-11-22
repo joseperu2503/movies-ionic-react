@@ -12,7 +12,7 @@ import { Movie } from "../../interfaces/movie.interface";
 import { TvSerie } from "../../interfaces/tvSerie.interface";
 import { Genre, GenresResponse } from "../../interfaces/genre.interface";
 import { Slideshow } from "../../components/Slideshow/Slideshow";
-import { HorizontalScroll } from "../../components/HorizontalScroll/HorizontalScroll";
+import { HorizontalScroll } from "../HomePage/components/HorizontalScroll/HorizontalScroll";
 import { Icon } from "@iconify/react";
 
 const HomeTabPage: React.FC = () => {

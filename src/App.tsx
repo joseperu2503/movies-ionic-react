@@ -62,10 +62,28 @@ const App: React.FC = () => {
           ></Route>
           <Route exact path="/movie/:movieId" component={MoviePage}></Route>
           <Route exact path="/popular-movies">
-            <MoviesByCategory url="/movie/popular"></MoviesByCategory>
+            <MoviesByCategory
+              url="/movie/popular"
+              title="Popular Movies"
+            ></MoviesByCategory>
           </Route>
-          <Route exact path="/popular-movies">
-            <MoviesByCategory url="/movie/popular"></MoviesByCategory>
+          <Route exact path="/now-playing-movies">
+            <MoviesByCategory
+              url="/movie/now_playing"
+              title="Now Playing Movies"
+            ></MoviesByCategory>
+          </Route>
+          <Route exact path="/top-rated-movies">
+            <MoviesByCategory
+              url="/movie/top_rated"
+              title="Top Rated Movies"
+            ></MoviesByCategory>
+          </Route>
+          <Route exact path="/upcoming-movies">
+            <MoviesByCategory
+              url="/movie/upcoming"
+              title="Upcoming Movies"
+            ></MoviesByCategory>
           </Route>
           <Route exact path="/tabs/:id">
             <Tabs></Tabs>

@@ -2,10 +2,10 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
 import { useEffect, useState } from "react";
-import { Movie } from "../../interfaces/movie.interface";
-import { mdbApi } from "../../api/theMovieDbApi";
-import { ResponsePaginate } from "../../interfaces/responsePaginate.interface";
-import { TvSerie } from "../../interfaces/tvSerie.interface";
+import { Movie } from "../../../../interfaces/movie.interface";
+import { mdbApi } from "../../../../api/theMovieDbApi";
+import { ResponsePaginate } from "../../../../interfaces/responsePaginate.interface";
+import { TvSerie } from "../../../../interfaces/tvSerie.interface";
 import { useIonRouter } from "@ionic/react";
 
 interface Props {

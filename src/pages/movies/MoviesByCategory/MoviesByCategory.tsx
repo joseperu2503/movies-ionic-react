@@ -20,9 +20,10 @@ import { SubscriptionType } from "@/components/SubscriptionTag/SubscriptionTag";
 interface Props {
   url: string;
   params?: Object;
+  title: string;
 }
 
-const MoviesByCategory = ({ url, params }: Props) => {
+const MoviesByCategory = ({ url, params, title }: Props) => {
   const [movies, setMovies] = useState<Movie[]>([]);
   const [page, setPage] = useState<number>(1);
   const [totalPages, setTotalPages] = useState<number>(1);
@@ -60,7 +61,7 @@ const MoviesByCategory = ({ url, params }: Props) => {
         <IonToolbar className="toolbar-detail">
           <BackButton />
           <IonTitle>
-            <span className="text-base font-semibold">Popular Movies</span>
+            <span className="text-base font-semibold">{title}</span>
           </IonTitle>
         </IonToolbar>
       </IonHeader>
