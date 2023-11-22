@@ -77,6 +77,7 @@ const MoviesByCategory = ({ url, params }: Props) => {
                   subscriptionType={SubscriptionType.free}
                   year={getDate(movie.release_date)}
                   voteAverage={movie.vote_average}
+                  genres={movie.genre_ids}
                 />
               );
             })}

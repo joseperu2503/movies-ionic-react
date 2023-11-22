@@ -1,9 +1,11 @@
 import calendarIcon from "@/assets/calendar.svg";
+import filmIcon from "@/assets/film.svg";
 import starIcon from "@/assets/star.svg";
 import {
   SubscriptionTag,
   SubscriptionType,
 } from "@/components/SubscriptionTag/SubscriptionTag";
+import { useAppSelector } from "@/store/store";
 
 interface Props {
   title: string;
@@ -12,6 +14,7 @@ interface Props {
   subscriptionType: SubscriptionType;
   overview: string;
   voteAverage: number;
+  genres: number[];
 }
 
 const MovieSerieItem = ({
@@ -21,7 +24,14 @@ const MovieSerieItem = ({
   subscriptionType,
   overview,
   voteAverage,
+  genres,
 }: Props): JSX.Element => {
+  const genresStore = useAppSelector((state) => state.genres.movieGenres);
+
+  const genre: string | undefined = genresStore.find(
+    (g) => g.id == genres[0]
+  )?.name;
+
   return (
     <div className="flex gap-4">
       <div className="relative min-w-[112px] h-[147px]">
@@ -44,11 +54,15 @@ const MovieSerieItem = ({
           <img src={calendarIcon} alt="calendar-icon" className="w-4 h-4 " />
           <span className="text-xs text-grey font-medium">{year}</span>
         </div>
-        <div className="mt-3">
+        <div className="flex items-center gap-1 mt-3">
+          <img src={filmIcon} alt="calendar-icon" className="w-4 h-4 " />
+          <span className="text-xs text-grey font-medium">{genre}</span>
+        </div>
+        {/* <div className="mt-3">
           <span className="text-xs text-grey font-medium line-clamp-2 ">
             {overview}
           </span>
-        </div>
+        </div> */}
       </div>
     </div>
   );

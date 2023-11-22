@@ -21,51 +21,23 @@ import "@ionic/react/css/display.css";
 /* Theme variables */
 import "./theme/variables.css";
 import MoviePage from "@/pages/MoviePage/MoviePage";
-import SeriePage from "@/pages/serie/SeriePage";
 import { Tabs } from "@/shared/Tabs";
 import { HomePage } from "./pages/HomePage/HomePage";
 import { LoginPage } from "./pages/LoginPage/LoginPage";
-import { StatusBar, Style } from "@capacitor/status-bar";
-import { isPlatform } from "@ionic/react";
-import { useEffect } from "react";
-import { SafeArea } from "capacitor-plugin-safe-area";
 import { SignUpPage } from "./pages/SignUpPage/SignUpPage";
 import { ResetPasswordPage } from "./pages/ResetPasswordPage/ResetPasswordPage";
 import { VerifyAccountPage } from "./pages/VerifyAccountPage/VerifyAccountPage";
 import { CreateNewPasswordPage } from "./pages/CreateNewPassword/CreateNewPasswordPage";
 import { MoviesByCategory } from "./pages/movies/MoviesByCategory/MoviesByCategory";
-
+import { useDevice } from "@/hooks/useDevice";
+import { useGenres } from "./hooks/useGenres";
 setupIonicReact({
   mode: "ios",
 });
 
-interface SafeAreaInterface {
-  top: number;
-  right: number;
-  bottom: number;
-  left: number;
-}
-
 const App: React.FC = () => {
-  useEffect(() => {
-    if (isPlatform("capacitor")) {
-      //statusbar transparente
-      StatusBar.setOverlaysWebView({ overlay: true });
-    }
-
-    SafeArea.getSafeAreaInsets().then(({ insets }) => {
-      setInsets(insets);
-    });
-
-    const setInsets = (insets: SafeAreaInterface) => {
-      for (const [key, value] of Object.entries(insets)) {
-        document.documentElement.style.setProperty(
-          `--ion-safe-area-${key}`,
-          `${value}px`
-        );
-      }
-    };
-  }, []);
+  useDevice();
+  useGenres();
 
   return (
     <IonApp>
