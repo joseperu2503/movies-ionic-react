@@ -3,10 +3,12 @@ import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
 export interface GenresState {
   movieGenres: Genre[];
+  tvGenres: Genre[];
 }
 
 const initialState: GenresState = {
   movieGenres: [],
+  tvGenres: [],
 }
 
 export const genresSlice = createSlice({
@@ -16,10 +18,12 @@ export const genresSlice = createSlice({
     setMovieGenres: (state, action: PayloadAction<Genre[]>) => {
       state.movieGenres = action.payload
     },
-
+    setTvGenres: (state, action: PayloadAction<Genre[]>) => {
+      state.tvGenres = action.payload
+    },
   }
 })
 
-export const { setMovieGenres } = genresSlice.actions
+export const { setMovieGenres, setTvGenres } = genresSlice.actions
 
 export const genresReducer = genresSlice.reducer
