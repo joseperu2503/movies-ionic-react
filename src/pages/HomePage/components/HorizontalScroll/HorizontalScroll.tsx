@@ -6,69 +6,65 @@ import { Movie } from "../../../../interfaces/movie.interface";
 import { mdbApi } from "../../../../api/theMovieDbApi";
 import { ResponsePaginate } from "../../../../interfaces/responsePaginate.interface";
 import { TvSerie } from "../../../../interfaces/tvSerie.interface";
-import { useIonRouter } from "@ionic/react";
+import { IonRippleEffect, useIonRouter } from "@ionic/react";
 
 interface Props {
   url: string;
   type: "movie" | "tv";
+  label: string;
+  urlSeeAll: string;
 }
-const HorizontalScroll = ({ url, type }: Props) => {
-  const [movies, setMovies] = useState<Movie[]>([]);
-  const [series, setSeries] = useState<TvSerie[]>([]);
+const HorizontalScroll = ({ url, type, label, urlSeeAll }: Props) => {
+  const [items, setItems] = useState<(Movie | TvSerie)[]>([]);
 
   useEffect(() => {
-    if (type == "movie") {
-      getMovies();
-    } else {
-      getSeries();
-    }
+    getItems();
   }, []);
-  const getMovies = async () => {
-    const moviesResponse = await mdbApi.get<ResponsePaginate<Movie>>(url);
-    setMovies(moviesResponse.data.results);
-  };
-
-  const getSeries = async () => {
-    const seriesResponse = await mdbApi.get<ResponsePaginate<TvSerie>>(url);
-    setSeries(seriesResponse.data.results);
+  const getItems = async () => {
+    const moviesResponse = await mdbApi.get<ResponsePaginate<Movie | TvSerie>>(
+      url
+    );
+    setItems(moviesResponse.data.results);
   };
 
   const router = useIonRouter();
 
   return (
-    (movies.length > 0 || series.length > 0) && (
-      <div className="px-6">
-        <Swiper slidesPerView="auto" spaceBetween={12}>
-          {movies.map((movie) => {
-            return (
-              <SwiperSlide
-                key={movie.id}
-                className="w-auto"
-                onClick={() => router.push(`/movie/${movie.id}`)}
-              >
-                <img
-                  src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-                  alt=""
-                  className="rounded-xl w-[135px] aspect-[2/3]"
-                />
-              </SwiperSlide>
-            );
-          })}
-
-          {series.map((serie) => {
-            return (
-              <SwiperSlide key={serie.id} className="w-auto">
-                <img
-                  src={`https://image.tmdb.org/t/p/w500${serie.poster_path}`}
-                  alt=""
-                  className="rounded-xl w-[135px] aspect-[2/3]"
-                />
-              </SwiperSlide>
-            );
-          })}
-        </Swiper>
+    <>
+      <div className="flex justify-between items-center pl-6 pr-4 mt-5">
+        <span className="font-semibold text-white">{label}</span>
+        <span
+          onClick={() => router.push(urlSeeAll)}
+          className="text-sm text-primary font-medium px-2 py-1 rounded-full ion-activatable relative overflow-hidden"
+        >
+          See All
+          <IonRippleEffect></IonRippleEffect>
+        </span>
       </div>
-    )
+      <div className="mt-3">
+        {items.length > 0 && (
+          <div className="px-6">
+            <Swiper slidesPerView="auto" spaceBetween={12}>
+              {items.map((item) => {
+                return (
+                  <SwiperSlide
+                    key={item.id}
+                    className="w-auto"
+                    onClick={() => router.push(`/${type}/${item.id}`)}
+                  >
+                    <img
+                      src={`https://image.tmdb.org/t/p/w500${item.poster_path}`}
+                      alt=""
+                      className="rounded-xl w-[135px] aspect-[2/3]"
+                    />
+                  </SwiperSlide>
+                );
+              })}
+            </Swiper>
+          </div>
+        )}
+      </div>
+    </>
   );
 };
 

@@ -61,25 +61,25 @@ const App: React.FC = () => {
             component={CreateNewPasswordPage}
           ></Route>
           <Route exact path="/movie/:movieId" component={MoviePage}></Route>
-          <Route exact path="/popular-movies">
+          <Route exact path="/movies/popular">
             <MoviesByCategory
               url="/movie/popular"
               title="Popular Movies"
             ></MoviesByCategory>
           </Route>
-          <Route exact path="/now-playing-movies">
+          <Route exact path="/movies/now-playing">
             <MoviesByCategory
               url="/movie/now_playing"
               title="Now Playing Movies"
             ></MoviesByCategory>
           </Route>
-          <Route exact path="/top-rated-movies">
+          <Route exact path="/movies/top-rated">
             <MoviesByCategory
               url="/movie/top_rated"
               title="Top Rated Movies"
             ></MoviesByCategory>
           </Route>
-          <Route exact path="/upcoming-movies">
+          <Route exact path="/movies/upcoming">
             <MoviesByCategory
               url="/movie/upcoming"
               title="Upcoming Movies"

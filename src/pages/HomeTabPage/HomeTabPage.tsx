@@ -74,65 +74,42 @@ const HomeTabPage: React.FC = () => {
         <div className="mt-6">
           <Slideshow></Slideshow>
         </div>
-        <div className="flex justify-between px-6 mt-6">
-          <span className="font-semibold text-white">Popular</span>
-          <span
-            className="text-sm text-primary font-medium"
-            onClick={() => router.push("/popular-movies")}
-          >
-            See All
-          </span>
-        </div>
-        <div className="mt-4">
-          <HorizontalScroll
-            url="/movie/popular"
-            type="movie"
-          ></HorizontalScroll>
-        </div>
-        <div className="flex justify-between px-6 mt-6">
-          <span className="font-semibold text-white">Now Playing</span>
-          <span className="text-sm text-primary font-medium">See All</span>
-        </div>
-        <div className="mt-4">
-          <HorizontalScroll
-            url="/movie/now_playing"
-            type="movie"
-          ></HorizontalScroll>
-        </div>
-        <div className="flex justify-between px-6 mt-6">
-          <span className="font-semibold text-white">Top Rated</span>
-          <span className="text-sm text-primary font-medium">See All</span>
-        </div>
-        <div className="mt-4">
-          <HorizontalScroll
-            url="/movie/top_rated"
-            type="movie"
-          ></HorizontalScroll>
-        </div>
-        <div className="flex justify-between px-6 mt-6">
-          <span className="font-semibold text-white">Upcoming</span>
-          <span className="text-sm text-primary font-medium">See All</span>
-        </div>
-        <div className="mt-4">
-          <HorizontalScroll
-            url="/movie/upcoming"
-            type="movie"
-          ></HorizontalScroll>
-        </div>
-        <div className="flex justify-between px-6 mt-6">
-          <span className="font-semibold text-white">Popular Series</span>
-          <span className="text-sm text-primary font-medium">See All</span>
-        </div>
-        <div className="mt-4">
-          <HorizontalScroll url="/tv/popular" type="tv"></HorizontalScroll>
-        </div>
-        <div className="flex justify-between px-6 mt-6">
-          <span className="font-semibold text-white">Airing Today</span>
-          <span className="text-sm text-primary font-medium">See All</span>
-        </div>
-        <div className="mt-4">
-          <HorizontalScroll url="/tv/airing_today" type="tv"></HorizontalScroll>
-        </div>
+        <HorizontalScroll
+          url="/movie/popular"
+          type="movie"
+          label="Popular"
+          urlSeeAll="/movies/popular"
+        />
+        <HorizontalScroll
+          url="/movie/now_playing"
+          type="movie"
+          label="Now Playing"
+          urlSeeAll="/movies/now-playing"
+        />
+        <HorizontalScroll
+          url="/movie/top_rated"
+          type="movie"
+          label="Top Rated"
+          urlSeeAll="/movies/top-rated"
+        />
+        <HorizontalScroll
+          url="/movie/upcoming"
+          type="movie"
+          label="Upcoming"
+          urlSeeAll="/movies/upcoming"
+        />
+        <HorizontalScroll
+          url="/tv/popular"
+          type="tv"
+          label="Popular Series"
+          urlSeeAll="/movies/upcoming"
+        />
+        <HorizontalScroll
+          url="/tv/airing_today"
+          type="tv"
+          label="Airing Today"
+          urlSeeAll="/movies/upcoming"
+        />
       </IonContent>
     </IonPage>
   );
