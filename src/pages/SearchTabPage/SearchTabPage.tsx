@@ -3,10 +3,12 @@ import {
   IonHeader,
   IonLabel,
   IonPage,
+  IonRippleEffect,
   IonSegment,
   IonSegmentButton,
   IonToolbar,
   SegmentChangeEventDetail,
+  useIonRouter,
 } from "@ionic/react";
 import "./SearchTabPage.css";
 import { useEffect, useRef, useState } from "react";
@@ -22,6 +24,7 @@ import { Person } from "@/interfaces/person.interface";
 import { Swiper as SwiperType } from "swiper/types";
 import { SearchInput } from "./components/SearchInput";
 import { PersonSearchItem } from "./components/PersonSearchItem";
+import { useAppSelector } from "@/store/store";
 
 const SearchTabPage = (): JSX.Element => {
   const [searchValue, setSearchValue] = useState<string>("");
@@ -65,6 +68,8 @@ const SearchTabPage = (): JSX.Element => {
     null
   );
 
+  const movieGenres = useAppSelector((state) => state.genres.movieGenres);
+
   useEffect(() => {
     // Cancela el temporizador existente si se presionó una tecla recientemente
     if (typingTimeout) {
@@ -103,6 +108,8 @@ const SearchTabPage = (): JSX.Element => {
     }
   };
 
+  const router = useIonRouter();
+
   return (
     <IonPage>
       <IonHeader className="ion-no-border">
@@ -115,9 +122,9 @@ const SearchTabPage = (): JSX.Element => {
           </div>
         </IonToolbar>
       </IonHeader>
-      <IonContent fullscreen>
-        <div className="h-full pt-6">
-          {searchValue.length > 0 && (
+      {searchValue.length > 0 && (
+        <IonContent fullscreen>
+          <div className="h-full pt-6">
             <div className="px-6">
               <IonSegment
                 value={segmentActive}
@@ -136,70 +143,94 @@ const SearchTabPage = (): JSX.Element => {
                 </IonSegmentButton>
               </IonSegment>
             </div>
-          )}
 
-          <div className="h-full overflow-hidden">
-            <Swiper
-              slidesPerView={1}
-              className="h-full"
-              onActiveIndexChange={onChangeSwiper}
-              ref={swiperRef}
-            >
-              <SwiperSlide className="overflow-y-auto">
-                <div className="px-6 py-8">
-                  <div className="flex flex-col gap-4">
-                    {movies.map((movie) => {
-                      return (
-                        <MovieSerieItem
-                          title={movie.title}
-                          key={movie.id}
-                          overview={movie.overview}
-                          posterPath={getPosterPath(movie.poster_path)}
-                          subscriptionType={SubscriptionType.free}
-                          year={getDate(movie.release_date)}
-                          voteAverage={movie.vote_average}
-                          genres={movie.genre_ids}
-                        />
-                      );
-                    })}
+            <div className="h-full overflow-hidden">
+              <Swiper
+                slidesPerView={1}
+                className="h-full"
+                onActiveIndexChange={onChangeSwiper}
+                ref={swiperRef}
+              >
+                <SwiperSlide className="overflow-y-auto">
+                  <div className="px-6 py-8">
+                    <div className="flex flex-col gap-4">
+                      {movies.map((movie) => {
+                        return (
+                          <MovieSerieItem
+                            title={movie.title}
+                            key={movie.id}
+                            overview={movie.overview}
+                            posterPath={getPosterPath(movie.poster_path)}
+                            subscriptionType={SubscriptionType.free}
+                            year={getDate(movie.release_date)}
+                            voteAverage={movie.vote_average}
+                            genres={movie.genre_ids}
+                          />
+                        );
+                      })}
+                    </div>
                   </div>
-                </div>
-              </SwiperSlide>
-              <SwiperSlide className="overflow-y-auto">
-                <div className="px-6 py-8">
-                  <div className="flex flex-col gap-4">
-                    {series.map((serie) => {
-                      return (
-                        <MovieSerieItem
-                          title={serie.name}
-                          key={serie.id}
-                          overview={serie.overview}
-                          posterPath={getPosterPath(serie.poster_path)}
-                          subscriptionType={SubscriptionType.free}
-                          year={getDate(serie.first_air_date)}
-                          voteAverage={serie.vote_average}
-                          genres={serie.genre_ids}
-                        />
-                      );
-                    })}
+                </SwiperSlide>
+                <SwiperSlide className="overflow-y-auto">
+                  <div className="px-6 py-8">
+                    <div className="flex flex-col gap-4">
+                      {series.map((serie) => {
+                        return (
+                          <MovieSerieItem
+                            title={serie.name}
+                            key={serie.id}
+                            overview={serie.overview}
+                            posterPath={getPosterPath(serie.poster_path)}
+                            subscriptionType={SubscriptionType.free}
+                            year={getDate(serie.first_air_date)}
+                            voteAverage={serie.vote_average}
+                            genres={serie.genre_ids}
+                          />
+                        );
+                      })}
+                    </div>
                   </div>
-                </div>
-              </SwiperSlide>
-              <SwiperSlide className="overflow-y-auto">
-                <div className="px-6 py-8">
-                  <div className="flex flex-col gap-4">
-                    {persons.map((person) => {
-                      return (
-                        <PersonSearchItem person={person} key={person.id} />
-                      );
-                    })}
+                </SwiperSlide>
+                <SwiperSlide className="overflow-y-auto">
+                  <div className="px-6 py-8">
+                    <div className="flex flex-col gap-4">
+                      {persons.map((person) => {
+                        return (
+                          <PersonSearchItem person={person} key={person.id} />
+                        );
+                      })}
+                    </div>
                   </div>
-                </div>
-              </SwiperSlide>
+                </SwiperSlide>
+              </Swiper>
+            </div>
+          </div>
+        </IonContent>
+      )}
+
+      {searchValue.length == 0 && (
+        <IonContent fullscreen>
+          <div className="px-6 pt-5">
+            <Swiper slidesPerView="auto" spaceBetween={8}>
+              {movieGenres.map((genre) => {
+                return (
+                  <SwiperSlide
+                    key={genre.id}
+                    className="w-auto"
+                    onClick={() => router.push(`/movies/genre/${genre.id}`)}
+                  >
+                    <div className="px-3 py-2 text-xs text-white-grey rounded-lg font-medium ion-activatable relative overflow-hidden">
+                      {genre.name}
+                      <IonRippleEffect></IonRippleEffect>
+                    </div>
+                  </SwiperSlide>
+                );
+              })}
             </Swiper>
           </div>
-        </div>
-      </IonContent>
+          <div className="h-full pt-6"></div>
+        </IonContent>
+      )}
     </IonPage>
   );
 };

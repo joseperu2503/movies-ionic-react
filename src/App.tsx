@@ -22,15 +22,16 @@ import "@ionic/react/css/display.css";
 import "./theme/variables.css";
 import MoviePage from "@/pages/MoviePage/MoviePage";
 import { Tabs } from "@/shared/Tabs";
-import { HomePage } from "./pages/HomePage/HomePage";
-import { LoginPage } from "./pages/LoginPage/LoginPage";
-import { SignUpPage } from "./pages/SignUpPage/SignUpPage";
-import { ResetPasswordPage } from "./pages/ResetPasswordPage/ResetPasswordPage";
-import { VerifyAccountPage } from "./pages/VerifyAccountPage/VerifyAccountPage";
-import { CreateNewPasswordPage } from "./pages/CreateNewPassword/CreateNewPasswordPage";
-import { MoviesByCategory } from "./pages/movies/MoviesByCategory/MoviesByCategory";
+import { HomePage } from "@/pages/HomePage/HomePage";
+import { LoginPage } from "@/pages/LoginPage/LoginPage";
+import { SignUpPage } from "@/pages/SignUpPage/SignUpPage";
+import { ResetPasswordPage } from "@/pages/ResetPasswordPage/ResetPasswordPage";
+import { VerifyAccountPage } from "@/pages/VerifyAccountPage/VerifyAccountPage";
+import { CreateNewPasswordPage } from "@/pages/CreateNewPassword/CreateNewPasswordPage";
+import { MoviesByCategory } from "@/pages/movies/MoviesByCategory/MoviesByCategory";
 import { useDevice } from "@/hooks/useDevice";
-import { useGenres } from "./hooks/useGenres";
+import { useGenres } from "@/hooks/useGenres";
+import { MoviesByGenre } from "@/pages/movies/MoviesByGenre/MoviesByGenre";
 setupIonicReact({
   mode: "ios",
 });
@@ -84,6 +85,9 @@ const App: React.FC = () => {
               url="/movie/upcoming"
               title="Upcoming Movies"
             ></MoviesByCategory>
+          </Route>
+          <Route exact path="/movies/genre/:genreId">
+            <MoviesByGenre />
           </Route>
           <Route exact path="/tabs/:id">
             <Tabs></Tabs>

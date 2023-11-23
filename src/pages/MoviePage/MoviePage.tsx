@@ -19,7 +19,6 @@ import starIcon from "@/assets/star.svg";
 import playIcon from "@/assets/play.svg";
 import downloadIcon from "@/assets/download.svg";
 import shareIcon from "@/assets/share.svg";
-import arrowBackIcon from "@/assets/arrow-back.svg";
 import heartIcon from "@/assets/heart.svg";
 import BackButton from "@/components/BackButton/BackButton";
 
