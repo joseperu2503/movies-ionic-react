@@ -1,61 +1,12 @@
-import {
-  IonContent,
-  IonHeader,
-  IonPage,
-  IonToolbar,
-  useIonRouter,
-} from "@ionic/react";
-import { useEffect, useState } from "react";
-import { mdbApi } from "../../api/theMovieDbApi";
-import { ResponsePaginate } from "../../interfaces/responsePaginate.interface";
-import { Movie } from "../../interfaces/movie.interface";
-import { TvSerie } from "../../interfaces/tvSerie.interface";
-import { Genre, GenresResponse } from "../../interfaces/genre.interface";
+import { IonContent, IonHeader, IonPage, IonToolbar } from "@ionic/react";
+
 import { Slideshow } from "../../components/Slideshow/Slideshow";
 import { HorizontalScroll } from "../HomePage/components/HorizontalScroll/HorizontalScroll";
 import { Icon } from "@iconify/react";
+import { useAppSelector } from "@/store/store";
 
 const HomeTabPage: React.FC = () => {
-  const [movies, setMovies] = useState<Movie[]>([]);
-  const [series, setSeries] = useState<TvSerie[]>([]);
-  const [movieGenres, setMovieGenres] = useState<Genre[]>([]);
-  const [tvSerieGenres, setTvSerieGenres] = useState<Genre[]>([]);
-  const router = useIonRouter();
-
-  useEffect(() => {
-    // getMovies();
-    // getSeries();
-    // getMovieGenres();
-    // getTvSeriesGenres();
-  }, []);
-
-  const getMovies = async () => {
-    const moviesResponse = await mdbApi.get<ResponsePaginate<Movie>>(
-      "/movie/now_playing"
-    );
-    setMovies(moviesResponse.data.results);
-  };
-
-  const getSeries = async () => {
-    const seriesResponse = await mdbApi.get<ResponsePaginate<TvSerie>>(
-      "/tv/popular"
-    );
-    setSeries(seriesResponse.data.results);
-  };
-
-  const getMovieGenres = async () => {
-    const movieGenresResponse = await mdbApi.get<GenresResponse>(
-      "/genre/movie/list"
-    );
-    setMovieGenres(movieGenresResponse.data.genres);
-  };
-
-  const getTvSeriesGenres = async () => {
-    const tvSerieGenresResponse = await mdbApi.get<GenresResponse>(
-      "/genre/tv/list"
-    );
-    setTvSerieGenres(tvSerieGenresResponse.data.genres);
-  };
+  const movieGenres = useAppSelector((state) => state.genres.movieGenres);
 
   return (
     <IonPage>
@@ -70,7 +21,7 @@ const HomeTabPage: React.FC = () => {
           <IonSearchbar placeholder="Search a tittle.."></IonSearchbar>
         </IonToolbar> */}
       </IonHeader>
-      <IonContent fullscreen>
+      <IonContent fullscreen id="movies-container">
         <div className="mt-6">
           <Slideshow></Slideshow>
         </div>
@@ -110,6 +61,19 @@ const HomeTabPage: React.FC = () => {
           label="Airing Today"
           urlSeeAll="/movies/upcoming"
         />
+        {movieGenres.map((genre) => {
+          return (
+            <HorizontalScroll
+              url="/discover/movie"
+              type="movie"
+              label={genre.name}
+              urlSeeAll={`/movies/genre/${genre.id}`}
+              params={{
+                with_genres: genre.id,
+              }}
+            />
+          );
+        })}
       </IonContent>
     </IonPage>
   );
