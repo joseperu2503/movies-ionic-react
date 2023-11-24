@@ -3,9 +3,9 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "./Slideshow.css";
 import React, { useEffect, useState } from "react";
-import { Movie } from "../../interfaces/movie.interface";
-import { mdbApi } from "../../api/theMovieDbApi";
-import { ResponsePaginate } from "../../interfaces/responsePaginate.interface";
+import { Movie } from "../../../../interfaces/movie.interface";
+import { mdbApi } from "../../../../api/theMovieDbApi";
+import { ResponsePaginate } from "../../../../interfaces/responsePaginate.interface";
 import { Autoplay, Pagination } from "swiper/modules";
 
 const Slideshow = () => {

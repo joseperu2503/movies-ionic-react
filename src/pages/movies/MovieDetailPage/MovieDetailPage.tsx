@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router";
-import { mdbApi } from "../../api/theMovieDbApi";
-import { MovieDetail } from "../../interfaces/movie.interface";
+import { mdbApi } from "../../../api/theMovieDbApi";
+import { MovieDetail } from "../../../interfaces/movie.interface";
 import {
   IonButtons,
   IonContent,
@@ -10,8 +10,8 @@ import {
   IonTitle,
   IonToolbar,
 } from "@ionic/react";
-import { Credits } from "../../interfaces/credits.interface";
-import "./MoviePage.css";
+import { Credits } from "@/interfaces/credits.interface";
+import "./MovieDetailPage.css";
 import calendarIcon from "@/assets/calendar.svg";
 import clockIcon from "@/assets/clock.svg";
 import filmIcon from "@/assets/film.svg";
@@ -22,7 +22,7 @@ import shareIcon from "@/assets/share.svg";
 import heartIcon from "@/assets/heart.svg";
 import BackButton from "@/components/BackButton/BackButton";
 
-const MoviePage: React.FC = () => {
+const MovieDetailPage: React.FC = () => {
   const { movieId } = useParams<{ movieId: string }>();
   const [movie, setMovie] = useState<MovieDetail>();
   const [credits, setCredits] = useState<Credits>();
@@ -201,4 +201,4 @@ const MoviePage: React.FC = () => {
   );
 };
 
-export default MoviePage;
+export default MovieDetailPage;

@@ -20,18 +20,18 @@ import "@ionic/react/css/display.css";
 
 /* Theme variables */
 import "./theme/variables.css";
-import MoviePage from "@/pages/MoviePage/MoviePage";
+import MovieDetailPage from "@/pages/movies/MovieDetailPage/MovieDetailPage";
 import { Tabs } from "@/shared/Tabs";
 import { HomePage } from "@/pages/HomePage/HomePage";
 import { LoginPage } from "@/pages/LoginPage/LoginPage";
 import { SignUpPage } from "@/pages/SignUpPage/SignUpPage";
 import { ResetPasswordPage } from "@/pages/ResetPasswordPage/ResetPasswordPage";
 import { VerifyAccountPage } from "@/pages/VerifyAccountPage/VerifyAccountPage";
-import { CreateNewPasswordPage } from "@/pages/CreateNewPassword/CreateNewPasswordPage";
-import { MoviesByCategory } from "@/pages/movies/MoviesByCategory/MoviesByCategory";
+import { CreateNewPasswordPage } from "@/pages/CreateNewPasswordPage/CreateNewPasswordPage";
+import { MoviesByCategoryPage } from "@/pages/movies/MoviesByCategoryPage/MoviesByCategoryPage";
 import { useDevice } from "@/hooks/useDevice";
 import { useGenres } from "@/hooks/useGenres";
-import { MoviesByGenre } from "@/pages/movies/MoviesByGenre/MoviesByGenre";
+import { MoviesByGenrePage } from "@/pages/movies/MoviesByGenrePage/MoviesByGenrePage";
 setupIonicReact({
   mode: "ios",
 });
@@ -61,37 +61,41 @@ const App: React.FC = () => {
             path="/create-new-password"
             component={CreateNewPasswordPage}
           ></Route>
-          <Route exact path="/movie/:movieId" component={MoviePage}></Route>
+          <Route
+            exact
+            path="/movie/:movieId"
+            component={MovieDetailPage}
+          ></Route>
           <Route exact path="/movies/popular">
-            <MoviesByCategory
+            <MoviesByCategoryPage
               url="/movie/popular"
               title="Popular Movies"
               storeKey="popular"
             />
           </Route>
           <Route exact path="/movies/now-playing">
-            <MoviesByCategory
+            <MoviesByCategoryPage
               url="/movie/now_playing"
               title="Now Playing Movies"
               storeKey="now_playing"
             />
           </Route>
           <Route exact path="/movies/top-rated">
-            <MoviesByCategory
+            <MoviesByCategoryPage
               url="/movie/top_rated"
               title="Top Rated Movies"
               storeKey="top_rated"
             />
           </Route>
           <Route exact path="/movies/upcoming">
-            <MoviesByCategory
+            <MoviesByCategoryPage
               url="/movie/upcoming"
               title="Upcoming Movies"
               storeKey="upcoming"
             />
           </Route>
           <Route exact path="/movies/genre/:genreId">
-            <MoviesByGenre />
+            <MoviesByGenrePage />
           </Route>
           <Route exact path="/tabs/:id">
             <Tabs></Tabs>

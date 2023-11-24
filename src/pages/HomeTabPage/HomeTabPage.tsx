@@ -1,7 +1,7 @@
 import { IonContent, IonHeader, IonPage, IonToolbar } from "@ionic/react";
 
-import { Slideshow } from "../../components/Slideshow/Slideshow";
-import { HorizontalScroll } from "../HomePage/components/HorizontalScroll/HorizontalScroll";
+import { Slideshow } from "@/pages/HomeTabPage/components/Slideshow/Slideshow";
+import { HorizontalScroll } from "@/pages/HomeTabPage/components/HorizontalScroll/HorizontalScroll";
 import { Icon } from "@iconify/react";
 import { useAppSelector } from "@/store/store";
 

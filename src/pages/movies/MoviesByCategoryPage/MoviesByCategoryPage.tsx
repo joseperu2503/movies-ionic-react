@@ -8,17 +8,11 @@ import {
   IonTitle,
   IonToolbar,
 } from "@ionic/react";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import BackButton from "@/components/BackButton/BackButton";
-import { ResponsePaginate } from "@/interfaces/responsePaginate.interface";
-import { Movie } from "@/interfaces/movie.interface";
-import { mdbApi } from "@/api/theMovieDbApi";
 import { MovieSerieItem } from "@/components/MovieSerieItem/MovieSerieItem";
 import { getDate, getPosterPath } from "@/utils/utils";
 import { SubscriptionType } from "@/components/SubscriptionTag/SubscriptionTag";
-import { useAppSelector } from "@/store/store";
-import { setMovies } from "@/slices/moviesSlice";
-import { useDispatch } from "react-redux";
 import { useMovie } from "@/hooks/useMovie";
 
 interface Props {
@@ -28,7 +22,7 @@ interface Props {
   storeKey: string;
 }
 
-const MoviesByCategory = ({ url, params, title, storeKey }: Props) => {
+const MoviesByCategoryPage = ({ url, params, title, storeKey }: Props) => {
   const { getItems, items, page, totalPages } = useMovie({
     storeKey,
     url,
@@ -86,4 +80,4 @@ const MoviesByCategory = ({ url, params, title, storeKey }: Props) => {
   );
 };
 
-export { MoviesByCategory };
+export { MoviesByCategoryPage };
