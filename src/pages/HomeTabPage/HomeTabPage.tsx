@@ -64,6 +64,7 @@ const HomeTabPage: React.FC = () => {
         {movieGenres.map((genre) => {
           return (
             <HorizontalScroll
+              key={genre.id}
               url="/discover/movie"
               type="movie"
               label={genre.name}
