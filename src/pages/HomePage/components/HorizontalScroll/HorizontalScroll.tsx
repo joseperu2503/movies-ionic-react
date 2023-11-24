@@ -8,6 +8,11 @@ import { ResponsePaginate } from "../../../../interfaces/responsePaginate.interf
 import { TvSerie } from "../../../../interfaces/tvSerie.interface";
 import { IonRippleEffect, useIonRouter } from "@ionic/react";
 import { useInView } from "react-intersection-observer";
+import { useAppSelector } from "@/store/store";
+import { useDispatch } from "react-redux";
+import { setMovies } from "@/slices/moviesSlice";
+import { useMovie } from "@/hooks/useMovie";
+import { useTvSerie } from "@/hooks/useTvSerie";
 
 interface Props {
   url: string;
@@ -15,22 +20,28 @@ interface Props {
   label: string;
   urlSeeAll: string;
   params?: Object;
+  storeKey: string;
 }
-const HorizontalScroll = ({ url, type, label, urlSeeAll, params }: Props) => {
-  const [items, setItems] = useState<(Movie | TvSerie)[]>([]);
-
-  useEffect(() => {}, []);
-  const getItems = async () => {
-    const moviesResponse = await mdbApi.get<ResponsePaginate<Movie | TvSerie>>(
-      url,
-      {
-        params: {
-          ...params,
-        },
-      }
-    );
-    setItems(moviesResponse.data.results);
-  };
+const HorizontalScroll = ({
+  url,
+  type,
+  label,
+  urlSeeAll,
+  params,
+  storeKey,
+}: Props) => {
+  const { items, page, getItems } =
+    type == "movie"
+      ? useMovie({
+          url,
+          params,
+          storeKey,
+        })
+      : useTvSerie({
+          url,
+          params,
+          storeKey,
+        });
 
   const router = useIonRouter();
   const [loaded, setLoaded] = useState(false);
@@ -44,7 +55,9 @@ const HorizontalScroll = ({ url, type, label, urlSeeAll, params }: Props) => {
 
   // detecta cuando esta visible para cargar las peliculas
   if (inView && !loaded) {
-    getItems();
+    if (page == 1) {
+      getItems();
+    }
     setLoaded(true);
   }
 

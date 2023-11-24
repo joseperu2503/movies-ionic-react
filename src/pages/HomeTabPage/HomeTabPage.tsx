@@ -30,36 +30,42 @@ const HomeTabPage: React.FC = () => {
           type="movie"
           label="Popular"
           urlSeeAll="/movies/popular"
+          storeKey="popular"
         />
         <HorizontalScroll
           url="/movie/now_playing"
           type="movie"
           label="Now Playing"
           urlSeeAll="/movies/now-playing"
+          storeKey="now_playing"
         />
         <HorizontalScroll
           url="/movie/top_rated"
           type="movie"
           label="Top Rated"
           urlSeeAll="/movies/top-rated"
+          storeKey="top_rated"
         />
         <HorizontalScroll
           url="/movie/upcoming"
           type="movie"
           label="Upcoming"
           urlSeeAll="/movies/upcoming"
+          storeKey="upcoming"
         />
         <HorizontalScroll
           url="/tv/popular"
           type="tv"
           label="Popular Series"
           urlSeeAll="/movies/upcoming"
+          storeKey="popular"
         />
         <HorizontalScroll
           url="/tv/airing_today"
           type="tv"
           label="Airing Today"
           urlSeeAll="/movies/upcoming"
+          storeKey="airing_today"
         />
         {movieGenres.map((genre) => {
           return (
@@ -72,6 +78,7 @@ const HomeTabPage: React.FC = () => {
               params={{
                 with_genres: genre.id,
               }}
+              storeKey={genre.name.toLowerCase()}
             />
           );
         })}

@@ -19,6 +19,7 @@ import { SubscriptionType } from "@/components/SubscriptionTag/SubscriptionTag";
 import { useAppSelector } from "@/store/store";
 import { setMovies } from "@/slices/moviesSlice";
 import { useDispatch } from "react-redux";
+import { useMovie } from "@/hooks/useMovie";
 
 interface Props {
   url: string;
@@ -28,47 +29,20 @@ interface Props {
 }
 
 const MoviesByCategory = ({ url, params, title, storeKey }: Props) => {
-  const dispatch = useDispatch();
-
-  const [loading, setLoading] = useState<boolean>(false);
-
-  const moviesStore = useAppSelector((state) => state.movies);
-
-  const { movies, page, totalPages } = moviesStore.movies[storeKey] ?? {
-    movies: [],
-    page: 1,
-    totalPages: 2,
-  };
-
-  const getMovies = async () => {
-    if (page <= totalPages && !loading) {
-      setLoading(true);
-      const moviesResponse = await mdbApi.get<ResponsePaginate<Movie>>(url, {
-        params: {
-          page: page,
-          ...params,
-        },
-      });
-      dispatch(
-        setMovies({
-          movies: [...movies, ...moviesResponse.data.results],
-          page: page + 1,
-          totalPages: moviesResponse.data.total_pages,
-          storeKey: storeKey,
-        })
-      );
-      setLoading(false);
-    }
-  };
+  const { getItems, items, page, totalPages } = useMovie({
+    storeKey,
+    url,
+    params,
+  });
 
   const onIonInfinite = (ev: InfiniteScrollCustomEvent) => {
-    getMovies();
+    getItems();
     ev.target.complete();
   };
 
   useEffect(() => {
     if (page == 1) {
-      getMovies();
+      getItems();
     }
   }, []);
 
@@ -85,7 +59,7 @@ const MoviesByCategory = ({ url, params, title, storeKey }: Props) => {
       <IonContent fullscreen>
         <div className="px-6 py-8">
           <div className="flex flex-col gap-4">
-            {movies.map((movie, index) => {
+            {items.map((movie, index) => {
               return (
                 <MovieSerieItem
                   title={movie.title}
