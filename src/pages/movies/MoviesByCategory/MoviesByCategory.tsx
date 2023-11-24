@@ -16,18 +16,29 @@ import { mdbApi } from "@/api/theMovieDbApi";
 import { MovieSerieItem } from "@/components/MovieSerieItem/MovieSerieItem";
 import { getDate, getPosterPath } from "@/utils/utils";
 import { SubscriptionType } from "@/components/SubscriptionTag/SubscriptionTag";
+import { useAppSelector } from "@/store/store";
+import { setMovies } from "@/slices/moviesSlice";
+import { useDispatch } from "react-redux";
 
 interface Props {
   url: string;
   params?: Object;
   title: string;
+  storeKey: string;
 }
 
-const MoviesByCategory = ({ url, params, title }: Props) => {
-  const [movies, setMovies] = useState<Movie[]>([]);
-  const [page, setPage] = useState<number>(1);
-  const [totalPages, setTotalPages] = useState<number>(1);
+const MoviesByCategory = ({ url, params, title, storeKey }: Props) => {
+  const dispatch = useDispatch();
+
   const [loading, setLoading] = useState<boolean>(false);
+
+  const moviesStore = useAppSelector((state) => state.movies);
+
+  const { movies, page, totalPages } = moviesStore.movies[storeKey] ?? {
+    movies: [],
+    page: 1,
+    totalPages: 2,
+  };
 
   const getMovies = async () => {
     if (page <= totalPages && !loading) {
@@ -38,10 +49,14 @@ const MoviesByCategory = ({ url, params, title }: Props) => {
           ...params,
         },
       });
-      setPage(page + 1);
-      setTotalPages(moviesResponse.data.total_pages);
-
-      setMovies([...movies, ...moviesResponse.data.results]);
+      dispatch(
+        setMovies({
+          movies: [...movies, ...moviesResponse.data.results],
+          page: page + 1,
+          totalPages: moviesResponse.data.total_pages,
+          storeKey: storeKey,
+        })
+      );
       setLoading(false);
     }
   };
@@ -52,7 +67,9 @@ const MoviesByCategory = ({ url, params, title }: Props) => {
   };
 
   useEffect(() => {
-    getMovies();
+    if (page == 1) {
+      getMovies();
+    }
   }, []);
 
   return (

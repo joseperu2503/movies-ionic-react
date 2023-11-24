@@ -66,25 +66,29 @@ const App: React.FC = () => {
             <MoviesByCategory
               url="/movie/popular"
               title="Popular Movies"
-            ></MoviesByCategory>
+              storeKey="popular"
+            />
           </Route>
           <Route exact path="/movies/now-playing">
             <MoviesByCategory
               url="/movie/now_playing"
               title="Now Playing Movies"
-            ></MoviesByCategory>
+              storeKey="now_playing"
+            />
           </Route>
           <Route exact path="/movies/top-rated">
             <MoviesByCategory
               url="/movie/top_rated"
               title="Top Rated Movies"
-            ></MoviesByCategory>
+              storeKey="top_rated"
+            />
           </Route>
           <Route exact path="/movies/upcoming">
             <MoviesByCategory
               url="/movie/upcoming"
               title="Upcoming Movies"
-            ></MoviesByCategory>
+              storeKey="upcoming"
+            />
           </Route>
           <Route exact path="/movies/genre/:genreId">
             <MoviesByGenre />

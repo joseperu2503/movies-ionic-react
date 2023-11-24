@@ -1,10 +1,12 @@
 import { genresReducer } from '@/slices/genresSlice'
+import { moviesReducer } from '@/slices/moviesSlice'
 import { configureStore } from '@reduxjs/toolkit'
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux'
 
 export const store = configureStore({
   reducer: {
-    genres: genresReducer
+    genres: genresReducer,
+    movies: moviesReducer
   }
 })
 
