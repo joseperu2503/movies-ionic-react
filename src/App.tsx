@@ -1,4 +1,4 @@
-import { Redirect, Route } from "react-router-dom";
+import { Route } from "react-router-dom";
 import { IonApp, IonRouterOutlet, setupIonicReact } from "@ionic/react";
 import { IonReactRouter } from "@ionic/react-router";
 
@@ -32,6 +32,7 @@ import { MoviesByCategoryPage } from "@/pages/movies/MoviesByCategoryPage/Movies
 import { useDevice } from "@/hooks/useDevice";
 import { useGenres } from "@/hooks/useGenres";
 import { MoviesByGenrePage } from "@/pages/movies/MoviesByGenrePage/MoviesByGenrePage";
+import { SerieDetailPage } from "./pages/series/SerieDetailPage/SerieDetailPage";
 setupIonicReact({
   mode: "ios",
 });
@@ -65,6 +66,11 @@ const App: React.FC = () => {
             exact
             path="/movie/:movieId"
             component={MovieDetailPage}
+          ></Route>
+          <Route
+            exact
+            path="/tv/:serieId"
+            component={SerieDetailPage}
           ></Route>
           <Route exact path="/movies/popular">
             <MoviesByCategoryPage

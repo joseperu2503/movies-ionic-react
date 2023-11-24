@@ -1,16 +1,9 @@
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
-import { useEffect, useState } from "react";
-import { Movie } from "../../../../interfaces/movie.interface";
-import { mdbApi } from "../../../../api/theMovieDbApi";
-import { ResponsePaginate } from "../../../../interfaces/responsePaginate.interface";
-import { TvSerie } from "../../../../interfaces/tvSerie.interface";
+import { useState } from "react";
 import { IonRippleEffect, useIonRouter } from "@ionic/react";
 import { useInView } from "react-intersection-observer";
-import { useAppSelector } from "@/store/store";
-import { useDispatch } from "react-redux";
-import { setMovies } from "@/slices/moviesSlice";
 import { useMovie } from "@/hooks/useMovie";
 import { useTvSerie } from "@/hooks/useTvSerie";
 

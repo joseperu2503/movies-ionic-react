@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router";
-import { mdbApi } from "../../../api/theMovieDbApi";
-import { MovieDetail } from "../../../interfaces/movie.interface";
+import { mdbApi } from "@/api/theMovieDbApi";
+import { MovieDetail } from "@/interfaces/movie.interface";
 import {
   IonButtons,
   IonContent,
@@ -11,8 +11,8 @@ import {
   IonTitle,
   IonToolbar,
 } from "@ionic/react";
-import { Credits } from "@/interfaces/credits.interface";
-import "./MovieDetailPage.css";
+import { TvSerieDetail } from "@/interfaces/tvSerie.interface";
+import BackButton from "@/components/BackButton/BackButton";
 import calendarIcon from "@/assets/calendar.svg";
 import clockIcon from "@/assets/clock.svg";
 import filmIcon from "@/assets/film.svg";
@@ -21,27 +21,25 @@ import playIcon from "@/assets/play.svg";
 import downloadIcon from "@/assets/download.svg";
 import shareIcon from "@/assets/share.svg";
 import heartIcon from "@/assets/heart.svg";
-import BackButton from "@/components/BackButton/BackButton";
+import { Credits } from "@/interfaces/credits.interface";
 
-const MovieDetailPage: React.FC = () => {
-  const { movieId } = useParams<{ movieId: string }>();
-  const [movie, setMovie] = useState<MovieDetail>();
+const SerieDetailPage: React.FC = () => {
+  const { serieId } = useParams<{ serieId: string }>();
+  const [serie, setSerie] = useState<TvSerieDetail>();
   const [credits, setCredits] = useState<Credits>();
 
   useEffect(() => {
-    getMovie();
-    getMovieCredits();
+    getSerie();
+    getSerieCredits();
   }, []);
 
-  const getMovie = async () => {
-    const movieResponse = await mdbApi.get<MovieDetail>(`/movie/${movieId}`);
-    setMovie(movieResponse.data);
+  const getSerie = async () => {
+    const movieResponse = await mdbApi.get<TvSerieDetail>(`/tv/${serieId}`);
+    setSerie(movieResponse.data);
   };
 
-  const getMovieCredits = async () => {
-    const creditsResponse = await mdbApi.get<Credits>(
-      `/movie/${movieId}/credits`
-    );
+  const getSerieCredits = async () => {
+    const creditsResponse = await mdbApi.get<Credits>(`/tv/${serieId}/credits`);
 
     setCredits(creditsResponse.data);
   };
@@ -53,7 +51,7 @@ const MovieDetailPage: React.FC = () => {
           <BackButton />
           <IonTitle>
             <span className="text-base font-semibold tracking-[0.12px]">
-              {movie?.title}
+              {serie?.name}
             </span>
           </IonTitle>
           <IonButtons slot="end">
@@ -66,7 +64,7 @@ const MovieDetailPage: React.FC = () => {
           <div className="absolute w-full top-0">
             <div className="relative">
               <img
-                src={`https://image.tmdb.org/t/p/w500${movie?.poster_path}`}
+                src={`https://image.tmdb.org/t/p/w500${serie?.poster_path}`}
                 alt=""
                 className="w-full object-cover opacity-[0.24] poster-background"
               />
@@ -75,7 +73,7 @@ const MovieDetailPage: React.FC = () => {
           </div>
           <div className="absolute w-full top-0 pt-24 pb-24 px-6">
             <img
-              src={`https://image.tmdb.org/t/p/w500${movie?.poster_path}`}
+              src={`https://image.tmdb.org/t/p/w500${serie?.poster_path}`}
               alt=""
               className="w-[205px] h-auto mx-auto rounded-xl"
             />
@@ -87,20 +85,20 @@ const MovieDetailPage: React.FC = () => {
                 className="w-4 h-4 "
               />
               <span className="text-xs text-grey tracking-[0.12px] font-medium ml-1">
-                {movie?.release_date
-                  ? new Date(movie?.release_date).getFullYear()
+                {serie?.first_air_date
+                  ? new Date(serie?.first_air_date).getFullYear()
                   : ""}
               </span>
               <div className="w-0.5 h-4 bg-dark-grey mx-3"></div>
               <img src={clockIcon} alt="clock-icon" className="w-4 h-4 " />
               <span className="text-xs text-grey tracking-[0.12px] font-medium ml-1">
-                {movie?.runtime} Minutes
+                {serie?.seasons.length} Seasons
               </span>
               <div className="w-0.5 h-4 bg-dark-grey mx-3"></div>
               <img src={filmIcon} alt="clock-icon" className="w-4 h-4 " />
-              {movie?.genres[0] && (
+              {serie?.genres[0] && (
                 <span className="text-xs text-grey tracking-[0.12px] font-medium ml-1">
-                  {movie?.genres[0].name}
+                  {serie?.genres[0].name}
                 </span>
               )}
             </div>
@@ -108,7 +106,7 @@ const MovieDetailPage: React.FC = () => {
               <div className="px-2 py-1 bg-score flex gap-1">
                 <img src={starIcon} alt="star-icon" className="w-4 h-4 " />
                 <span className="text-xs text-secondary tracking-[0.12px] font-semibold">
-                  {movie?.vote_average.toFixed(1)}
+                  {serie?.vote_average.toFixed(1)}
                 </span>
               </div>
             </div>
@@ -116,7 +114,7 @@ const MovieDetailPage: React.FC = () => {
               <div className="w-[115px] h-12 bg-secondary rounded-full flex justify-center items-center ion-activatable relative overflow-hidden">
                 <img src={playIcon} alt="play-icon" className="w-6 h-6 " />
                 <span className="text-white tracking-[0.12px] font-medium">
-                  Play
+                  Trailer
                 </span>
                 <IonRippleEffect className="text-black"></IonRippleEffect>
               </div>
@@ -137,7 +135,7 @@ const MovieDetailPage: React.FC = () => {
               Story Line
             </div>
             <div className="font-normal tracking-[0.12px] mt-2 text-sm text-white-grey">
-              {movie?.overview}
+              {serie?.overview}
             </div>
             {credits?.cast.length! > 0 && (
               <div>
@@ -169,4 +167,4 @@ const MovieDetailPage: React.FC = () => {
   );
 };
 
-export default MovieDetailPage;
+export { SerieDetailPage };
