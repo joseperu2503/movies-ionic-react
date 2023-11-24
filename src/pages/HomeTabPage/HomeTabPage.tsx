@@ -67,6 +67,20 @@ const HomeTabPage: React.FC = () => {
           urlSeeAll="/movies/upcoming"
           storeKey="airing_today"
         />
+        <HorizontalScroll
+          url="/tv/on_the_air"
+          type="tv"
+          label="On the air"
+          urlSeeAll="/movies/upcoming"
+          storeKey="on_the_air"
+        />
+         <HorizontalScroll
+          url="/tv/top_rated"
+          type="tv"
+          label="Top Rated"
+          urlSeeAll="/movies/upcoming"
+          storeKey="top_rated"
+        />
         {movieGenres.map((genre) => {
           return (
             <HorizontalScroll
