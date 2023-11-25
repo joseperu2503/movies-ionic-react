@@ -1,0 +1,11 @@
+.tab-label {
+  display: none;
+}
+
+.tab-selected .tab-label {
+  display: block;
+}
+
+.tab-selected .bg-tab {
+  background: #252836;
+}
