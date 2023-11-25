@@ -157,12 +157,9 @@ const SearchTabPage = (): JSX.Element => {
                       {movies.map((movie) => {
                         return (
                           <MovieSerieItem
-                            title={movie.title}
+                            item={movie}
                             key={movie.id}
-                            posterPath={getPosterPath(movie.poster_path)}
-                            year={getDate(movie.release_date)}
-                            voteAverage={movie.vote_average}
-                            genres={movie.genre_ids}
+                            type="movie"
                           />
                         );
                       })}
@@ -175,12 +172,9 @@ const SearchTabPage = (): JSX.Element => {
                       {series.map((serie) => {
                         return (
                           <MovieSerieItem
-                            title={serie.name}
+                            item={serie}
                             key={serie.id}
-                            posterPath={getPosterPath(serie.poster_path)}
-                            year={getDate(serie.first_air_date)}
-                            voteAverage={serie.vote_average}
-                            genres={serie.genre_ids}
+                            type="tv"
                           />
                         );
                       })}

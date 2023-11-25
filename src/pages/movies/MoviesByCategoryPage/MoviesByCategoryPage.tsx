@@ -53,16 +53,9 @@ const MoviesByCategoryPage = ({ url, params, title, storeKey }: Props) => {
       <IonContent fullscreen>
         <div className="px-6 py-8">
           <div className="flex flex-col gap-4">
-            {items.map((movie, index) => {
+            {items.map((movie) => {
               return (
-                <MovieSerieItem
-                  title={movie.title}
-                  key={index}
-                  posterPath={getPosterPath(movie.poster_path)}
-                  year={getDate(movie.release_date)}
-                  voteAverage={movie.vote_average}
-                  genres={movie.genre_ids}
-                />
+                <MovieSerieItem item={movie} key={movie.id} type="movie" />
               );
             })}
           </div>

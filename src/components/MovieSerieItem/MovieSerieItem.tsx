@@ -6,43 +6,53 @@ import {
 } from "@/components/SubscriptionTag/SubscriptionTag";
 import { useAppSelector } from "@/store/store";
 import { VoteAverage } from "../VoteAverage/VoteAverage";
+import { useIonRouter } from "@ionic/react";
+import { Movie } from "@/interfaces/movie.interface";
+import { TvSerie } from "@/interfaces/tvSerie.interface";
+import { getPosterPath } from "@/utils/utils";
 
-interface Props {
-  title: string;
-  posterPath: string;
-  year: string;
-  voteAverage: number;
-  genres: number[];
-}
+type Props =
+  | {
+      item: Movie;
+      type: "movie";
+    }
+  | {
+      item: TvSerie;
+      type: "tv";
+    };
 
-const MovieSerieItem = ({
-  title,
-  posterPath,
-  year,
-  voteAverage,
-  genres,
-}: Props): JSX.Element => {
+const MovieSerieItem = ({ item, type }: Props): JSX.Element => {
   const genresStore = useAppSelector((state) => state.genres.movieGenres);
 
   const genre: string | undefined = genresStore.find(
-    (g) => g.id == genres[0]
+    (g) => g.id == item.genre_ids[0]
   )?.name;
 
+  const router = useIonRouter();
+
+  const title = type == "movie" ? item.title : item.name;
+  const year = type == "movie" ? item.release_date : item.first_air_date;
+
   return (
-    <div className="flex gap-4">
+    <div
+      className="flex gap-4"
+      onClick={() => router.push(`/${type}/${item.id}`)}
+    >
       <div className="relative min-w-[112px] h-[147px]">
         <img
-          src={posterPath}
+          src={getPosterPath(item.poster_path)}
           className="rounded-xl w-[112px] h-[147px] object-cover"
         />
         <div className="absolute top-2 left-2">
-          <VoteAverage voteAverage={voteAverage}></VoteAverage>
+          <VoteAverage voteAverage={item.vote_average}></VoteAverage>
         </div>
       </div>
       <div className="flex flex-col pt-1">
         <SubscriptionTag
           type={
-            voteAverage > 7 ? SubscriptionType.premium : SubscriptionType.free
+            item.vote_average > 7
+              ? SubscriptionType.premium
+              : SubscriptionType.free
           }
         />
         <div className="pt-3 font-semibold line-clamp-1 leading-5">{title}</div>
