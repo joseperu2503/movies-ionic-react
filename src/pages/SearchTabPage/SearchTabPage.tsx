@@ -3,12 +3,10 @@ import {
   IonHeader,
   IonLabel,
   IonPage,
-  IonRippleEffect,
   IonSegment,
   IonSegmentButton,
   IonToolbar,
   SegmentChangeEventDetail,
-  useIonRouter,
 } from "@ionic/react";
 import "./SearchTabPage.css";
 import { useEffect, useRef, useState } from "react";
@@ -18,13 +16,11 @@ import { ResponsePaginate } from "@/interfaces/responsePaginate.interface";
 import { Swiper, SwiperRef, SwiperSlide } from "swiper/react";
 import { TvSerie } from "@/interfaces/tvSerie.interface";
 import { MovieSerieItem } from "@/components/MovieSerieItem/MovieSerieItem";
-import { SubscriptionType } from "@/components/SubscriptionTag/SubscriptionTag";
-import { getDate, getPosterPath, getProfilePath } from "@/utils/utils";
 import { Person } from "@/interfaces/person.interface";
 import { Swiper as SwiperType } from "swiper/types";
 import { SearchInput } from "./components/SearchInput";
 import { PersonSearchItem } from "./components/PersonSearchItem";
-import { useAppSelector } from "@/store/store";
+import { GenresSlide } from "@/components/GenresSlide/GenresSlide";
 
 const SearchTabPage = (): JSX.Element => {
   const [searchValue, setSearchValue] = useState<string>("");
@@ -68,8 +64,6 @@ const SearchTabPage = (): JSX.Element => {
     null
   );
 
-  const movieGenres = useAppSelector((state) => state.genres.movieGenres);
-
   useEffect(() => {
     // Cancela el temporizador existente si se presionó una tecla recientemente
     if (typingTimeout) {
@@ -107,8 +101,6 @@ const SearchTabPage = (): JSX.Element => {
       swiperRef.current.swiper.slideTo(newIndex);
     }
   };
-
-  const router = useIonRouter();
 
   return (
     <IonPage>
@@ -200,23 +192,8 @@ const SearchTabPage = (): JSX.Element => {
 
       {searchValue.length == 0 && (
         <IonContent fullscreen>
-          <div className="px-6 pt-5">
-            <Swiper slidesPerView="auto" spaceBetween={8}>
-              {movieGenres.map((genre) => {
-                return (
-                  <SwiperSlide
-                    key={genre.id}
-                    className="w-auto"
-                    onClick={() => router.push(`/movies/genre/${genre.id}`)}
-                  >
-                    <div className="px-3 py-2 text-xs text-white-grey rounded-lg font-medium ion-activatable relative overflow-hidden">
-                      {genre.name}
-                      <IonRippleEffect></IonRippleEffect>
-                    </div>
-                  </SwiperSlide>
-                );
-              })}
-            </Swiper>
+          <div className="pt-5">
+            <GenresSlide />
           </div>
           <div className="h-full pt-6"></div>
         </IonContent>

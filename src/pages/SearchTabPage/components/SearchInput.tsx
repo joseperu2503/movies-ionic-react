@@ -19,12 +19,12 @@ const SearchInput = ({ searchValue, changeSearchValue }: Props) => {
           onInput={(event: ChangeEvent<HTMLInputElement>) =>
             changeSearchValue(event.target.value)
           }
-          className="bg-transparent outline-none text-sm font-medium tracking-[0.12px] placeholder:text-grey text-white w-full"
+          className="bg-transparent outline-none text-sm font-medium placeholder:text-grey text-white w-full"
         />
       </div>
       {searchValue.length > 0 && (
         <div
-          className="tracking-[0.12px] text-white text-xs"
+          className="text-white text-xs"
           onClick={() => changeSearchValue("")}
         >
           Cancel

@@ -4,6 +4,7 @@ import { Slideshow } from "@/pages/HomeTabPage/components/Slideshow/Slideshow";
 import { HorizontalScroll } from "@/pages/HomeTabPage/components/HorizontalScroll/HorizontalScroll";
 import { Icon } from "@iconify/react";
 import { useAppSelector } from "@/store/store";
+import { GenresSlide } from "@/components/GenresSlide/GenresSlide";
 
 const HomeTabPage: React.FC = () => {
   const movieGenres = useAppSelector((state) => state.genres.movieGenres);
@@ -24,6 +25,10 @@ const HomeTabPage: React.FC = () => {
       <IonContent fullscreen id="movies-container">
         <div className="mt-6">
           <Slideshow></Slideshow>
+        </div>
+        <div className="mt-6 mb-6">
+          <div className="font-semibold text-white px-6 pb-2">Categories</div>
+          <GenresSlide />
         </div>
         <HorizontalScroll
           url="/movie/popular"

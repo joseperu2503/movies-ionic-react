@@ -35,7 +35,7 @@ const Tabs: React.FC = () => {
           >
             <IonIcon aria-hidden="true" src={homeIcon} className="h-6 w-6" />
             {selectedTab == "home" && (
-              <div className="text-xs font-medium tracking-[0.12px]">Home</div>
+              <div className="text-xs font-medium">Home</div>
             )}
           </div>
         </IonTabButton>
@@ -48,9 +48,7 @@ const Tabs: React.FC = () => {
           >
             <IonIcon aria-hidden="true" src={searchIcon} className="h-6 w-6" />
             {selectedTab == "search" && (
-              <div className="text-xs font-medium tracking-[0.12px]">
-                Search
-              </div>
+              <div className="text-xs font-medium">Search</div>
             )}
           </div>
         </IonTabButton>
@@ -63,9 +61,7 @@ const Tabs: React.FC = () => {
           >
             <IonIcon aria-hidden="true" src={personIcon} className="h-6 w-6" />
             {selectedTab == "profile" && (
-              <div className="text-xs font-medium tracking-[0.12px]">
-                Profile
-              </div>
+              <div className="text-xs font-medium">Profile</div>
             )}
           </div>
         </IonTabButton>
