@@ -57,28 +57,28 @@ const HomeTabPage: React.FC = () => {
           url="/tv/popular"
           type="tv"
           label="Popular Series"
-          urlSeeAll="/movies/upcoming"
+          urlSeeAll="/tv/popular"
           storeKey="popular"
         />
         <HorizontalScroll
           url="/tv/airing_today"
           type="tv"
-          label="Airing Today"
-          urlSeeAll="/movies/upcoming"
+          label="Airing Today Series"
+          urlSeeAll="/tv/airing_today"
           storeKey="airing_today"
         />
         <HorizontalScroll
           url="/tv/on_the_air"
           type="tv"
-          label="On the air"
-          urlSeeAll="/movies/upcoming"
+          label="On The Air Series"
+          urlSeeAll="/tv/on_the_air"
           storeKey="on_the_air"
         />
-         <HorizontalScroll
+        <HorizontalScroll
           url="/tv/top_rated"
           type="tv"
-          label="Top Rated"
-          urlSeeAll="/movies/upcoming"
+          label="Top Rated Series"
+          urlSeeAll="/tv/top_rated"
           storeKey="top_rated"
         />
         {movieGenres.map((genre) => {

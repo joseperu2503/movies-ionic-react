@@ -11,23 +11,30 @@ import {
 import { useEffect } from "react";
 import BackButton from "@/components/BackButton/BackButton";
 import { MovieSerieItem } from "@/components/MovieSerieItem/MovieSerieItem";
-import { getDate, getPosterPath } from "@/utils/utils";
-import { SubscriptionType } from "@/components/SubscriptionTag/SubscriptionTag";
 import { useMovie } from "@/hooks/useMovie";
+import { useTvSerie } from "@/hooks/useTvSerie";
 
 interface Props {
   url: string;
   params?: Object;
   title: string;
   storeKey: string;
+  type: "movie" | "tv";
 }
 
-const MoviesByCategoryPage = ({ url, params, title, storeKey }: Props) => {
-  const { getItems, items, page, totalPages } = useMovie({
-    storeKey,
-    url,
-    params,
-  });
+const ItemsByCategoryPage = ({ url, params, title, storeKey, type }: Props) => {
+  const { getItems, items, page, totalPages } =
+    type == "movie"
+      ? useMovie({
+          storeKey,
+          url,
+          params,
+        })
+      : useTvSerie({
+          storeKey,
+          url,
+          params,
+        });
 
   const onIonInfinite = (ev: InfiniteScrollCustomEvent) => {
     getItems();
@@ -53,10 +60,8 @@ const MoviesByCategoryPage = ({ url, params, title, storeKey }: Props) => {
       <IonContent fullscreen>
         <div className="px-6 py-8">
           <div className="flex flex-col gap-4">
-            {items.map((movie) => {
-              return (
-                <MovieSerieItem item={movie} key={movie.id} type="movie" />
-              );
+            {items.map((item) => {
+              return <MovieSerieItem item={item} key={item.id} type={type} />;
             })}
           </div>
         </div>
@@ -71,4 +76,4 @@ const MoviesByCategoryPage = ({ url, params, title, storeKey }: Props) => {
   );
 };
 
-export { MoviesByCategoryPage };
+export { ItemsByCategoryPage };

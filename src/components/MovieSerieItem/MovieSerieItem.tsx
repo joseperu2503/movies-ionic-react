@@ -11,16 +11,10 @@ import { Movie } from "@/interfaces/movie.interface";
 import { TvSerie } from "@/interfaces/tvSerie.interface";
 import { getPosterPath } from "@/utils/utils";
 
-type Props =
-  | {
-      item: Movie;
-      type: "movie";
-    }
-  | {
-      item: TvSerie;
-      type: "tv";
-    };
-
+interface Props {
+  item: Movie | TvSerie;
+  type: "movie" | "tv";
+}
 const MovieSerieItem = ({ item, type }: Props): JSX.Element => {
   const genresStore = useAppSelector((state) => state.genres.movieGenres);
 
@@ -30,8 +24,12 @@ const MovieSerieItem = ({ item, type }: Props): JSX.Element => {
 
   const router = useIonRouter();
 
-  const title = type == "movie" ? item.title : item.name;
-  const year = type == "movie" ? item.release_date : item.first_air_date;
+  const title =
+    type == "movie" ? (item as Movie).title : (item as TvSerie).name;
+  const year =
+    type == "movie"
+      ? (item as Movie).release_date
+      : (item as TvSerie).first_air_date;
 
   return (
     <div

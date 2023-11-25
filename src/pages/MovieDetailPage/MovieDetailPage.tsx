@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router";
-import { mdbApi } from "../../../api/theMovieDbApi";
-import { MovieDetail } from "../../../interfaces/movie.interface";
+import { mdbApi } from "../../api/theMovieDbApi";
+import { MovieDetail } from "../../interfaces/movie.interface";
 import {
   IonButtons,
   IonContent,
@@ -149,4 +149,4 @@ const MovieDetailPage: React.FC = () => {
   );
 };
 
-export default MovieDetailPage;
+export { MovieDetailPage };
