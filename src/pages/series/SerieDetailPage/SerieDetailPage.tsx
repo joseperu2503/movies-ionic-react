@@ -5,7 +5,6 @@ import {
   IonButtons,
   IonContent,
   IonHeader,
-  IonIcon,
   IonPage,
   IonRippleEffect,
   IonTitle,
@@ -21,12 +20,12 @@ import playIcon from "@/assets/play.svg";
 import downloadIcon from "@/assets/download.svg";
 import shareIcon from "@/assets/share.svg";
 import heartIcon from "@/assets/heart.svg";
+import arrowDownIcon from "@/assets/arrow-down.svg";
 import { Credits } from "@/interfaces/credits.interface";
 import { SeasonResponse } from "@/interfaces/seasonResponse.interface";
-import {
-  SubscriptionTag,
-  SubscriptionType,
-} from "@/components/SubscriptionTag/SubscriptionTag";
+import { Episodes } from "./components/Episodes/Episodes";
+import "./SerieDetailPage.css";
+import ModalSeasons from "./components/ModalSeasons/ModalSeasons";
 
 const SerieDetailPage: React.FC = () => {
   const { serieId } = useParams<{ serieId: string }>();
@@ -65,6 +64,8 @@ const SerieDetailPage: React.FC = () => {
     setSeasons({ ...seasons, [seasonNumber - 1]: seasonResponse.data });
     setCurrentSeason(seasonResponse.data);
   };
+
+  const [showModal, setShowModal] = useState<boolean>(false);
 
   return (
     <IonPage>
@@ -175,53 +176,30 @@ const SerieDetailPage: React.FC = () => {
               </div>
             )}
             <div className="font-semibold mt-6">Episode</div>
-            <div className="flex flex-col gap-4 ">
-              {currentSeason?.episodes.map((episode) => {
-                return (
-                  <div
-                    key={episode.id}
-                    className="bg-primary-soft pt-3 pl-3 pr-3 pb-4 rounded-2xl"
-                  >
-                    <div className="flex gap-4">
-                      <img
-                        src={`https://image.tmdb.org/t/p/w500${episode.still_path}`}
-                        alt=""
-                        className="w-[121px] h-[83px] object-cover rounded-lg"
-                      />
-                      <div className="flex-1 mt-0">
-                        <div className="flex justify-between">
-                          <div className="mt-2">
-                            <SubscriptionTag
-                              type={SubscriptionType.premium}
-                            ></SubscriptionTag>
-                            <div className="text-xs font-medium text-grey mt-1">
-                              {episode.runtime} Minutes
-                            </div>
-                          </div>
-                          <div className="w-12 h-12 bg-primary-dark rounded-full flex justify-center items-center ion-activatable relative overflow-hidden">
-                            <IonIcon
-                              src={downloadIcon}
-                              className="text-secondary w-6 h-6"
-                            />
-                            <IonRippleEffect></IonRippleEffect>
-                          </div>
-                        </div>
-
-                        <div className="text-xs font-semibold text-white mt-2">
-                          {episode.name}
-                        </div>
-                      </div>
-                    </div>
-                    <div className="text-xs font-normal leading-5 mt-3">
-                      {episode.overview}
-                    </div>
-                  </div>
-                );
-              })}
+            <div className="my-4">
+              <div
+                className="flex items-center gap-1"
+                onClick={() => setShowModal(true)}
+              >
+                <div className="text-sm font-medium">{currentSeason?.name}</div>
+                <img
+                  src={arrowDownIcon}
+                  alt="arrow-down-icon"
+                  className="w-6 h-6 "
+                />
+              </div>
             </div>
+            <Episodes episodes={currentSeason?.episodes ?? []}></Episodes>
           </div>
         </div>
       </IonContent>
+      <ModalSeasons
+        seasons={serie?.seasons ?? []}
+        setShowModal={setShowModal}
+        showModal={showModal}
+        currentSeason={currentSeason}
+        onChangeSeason={(seasonNumber) => getSeason(seasonNumber)}
+      />
     </IonPage>
   );
 };

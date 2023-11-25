@@ -1,0 +1,8 @@
+.backdrop {
+  fill: rgba(31, 29, 43, 0.35);
+  backdrop-filter: blur(15px);
+}
+
+.bg-modal{
+  background: linear-gradient(179deg, #252836 0.93%, #252836 137.7%);
+}
