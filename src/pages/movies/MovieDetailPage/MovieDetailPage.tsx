@@ -22,6 +22,7 @@ import downloadIcon from "@/assets/download.svg";
 import shareIcon from "@/assets/share.svg";
 import heartIcon from "@/assets/heart.svg";
 import BackButton from "@/components/BackButton/BackButton";
+import { Cast } from "@/components/Cast/Cast";
 
 const MovieDetailPage: React.FC = () => {
   const { movieId } = useParams<{ movieId: string }>();
@@ -139,29 +140,7 @@ const MovieDetailPage: React.FC = () => {
             <div className="font-normal tracking-[0.12px] mt-2 text-sm text-white-grey">
               {movie?.overview}
             </div>
-            {credits?.cast.length! > 0 && (
-              <div>
-                <div className="font-semibold tracking-[0.12px] mt-6">
-                  Cast and Crew
-                </div>
-                <div className="overflow-x-scroll mt-4">
-                  <div className="flex w-max gap-4">
-                    {credits?.cast.map((actor) => {
-                      return (
-                        <div key={actor.id} className="w-20">
-                          {/* {<div>{actor.name}</div>} */}
-                          <img
-                            src={`https://image.tmdb.org/t/p/w500${actor?.profile_path}`}
-                            alt=""
-                            className="w-20 h-20 object-cover rounded-full"
-                          />
-                        </div>
-                      );
-                    })}
-                  </div>
-                </div>
-              </div>
-            )}
+            <Cast cast={credits?.cast ?? []} />
           </div>
         </div>
       </IonContent>

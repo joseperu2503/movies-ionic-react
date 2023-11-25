@@ -26,6 +26,7 @@ import { SeasonResponse } from "@/interfaces/seasonResponse.interface";
 import { Episodes } from "./components/Episodes/Episodes";
 import "./SerieDetailPage.css";
 import ModalSeasons from "./components/ModalSeasons/ModalSeasons";
+import { Cast } from "@/components/Cast/Cast";
 
 const SerieDetailPage: React.FC = () => {
   const { serieId } = useParams<{ serieId: string }>();
@@ -154,27 +155,7 @@ const SerieDetailPage: React.FC = () => {
             <div className="font-normal mt-2 text-sm text-white-grey">
               {serie?.overview}
             </div>
-            {credits?.cast.length! > 0 && (
-              <div>
-                <div className="font-semibold mt-6">Cast and Crew</div>
-                <div className="overflow-x-scroll mt-4">
-                  <div className="flex w-max gap-4">
-                    {credits?.cast.map((actor) => {
-                      return (
-                        <div key={actor.id} className="w-20">
-                          {/* {<div>{actor.name}</div>} */}
-                          <img
-                            src={`https://image.tmdb.org/t/p/w500${actor?.profile_path}`}
-                            alt=""
-                            className="w-20 h-20 object-cover rounded-full"
-                          />
-                        </div>
-                      );
-                    })}
-                  </div>
-                </div>
-              </div>
-            )}
+            <Cast cast={credits?.cast ?? []} />
             <div className="font-semibold mt-6">Episode</div>
             <div className="my-4">
               <div
