@@ -7,6 +7,7 @@ import { useInView } from "react-intersection-observer";
 import { useMovie } from "@/hooks/useMovie";
 import { useTvSerie } from "@/hooks/useTvSerie";
 import { getPosterPath } from "@/utils/utils";
+import { VoteAverage } from "@/components/VoteAverage/VoteAverage";
 
 interface Props {
   url: string;
@@ -78,11 +79,15 @@ const HorizontalScroll = ({
                     className="w-auto"
                     onClick={() => router.push(`/${type}/${item.id}`)}
                   >
-                    <img
-                      src={getPosterPath(item?.poster_path)}
-                      alt=""
-                      className="rounded-xl w-[135px] h-[178px] object-cover"
-                    />
+                    <div className="relative">
+                      <div className="absolute top-2 right-2">
+                        <VoteAverage voteAverage={item.vote_average} />
+                      </div>
+                      <img
+                        src={getPosterPath(item?.poster_path)}
+                        className="rounded-xl w-[135px] h-[178px] object-cover"
+                      />
+                    </div>
                   </SwiperSlide>
                 );
               })}
