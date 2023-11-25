@@ -11,8 +11,6 @@ interface Props {
   title: string;
   posterPath: string;
   year: string;
-  subscriptionType: SubscriptionType;
-  overview: string;
   voteAverage: number;
   genres: number[];
 }
@@ -21,8 +19,6 @@ const MovieSerieItem = ({
   title,
   posterPath,
   year,
-  subscriptionType,
-  overview,
   voteAverage,
   genres,
 }: Props): JSX.Element => {
@@ -43,12 +39,16 @@ const MovieSerieItem = ({
           <img src={starIcon} alt="star-icon" className="w-4 h-4 " />
 
           <div className="text-secondary text-xs font-semibold ">
-            {voteAverage}
+            {voteAverage.toFixed(1)}
           </div>
         </div>
       </div>
       <div className="flex flex-col pt-1">
-        <SubscriptionTag type={subscriptionType}></SubscriptionTag>
+        <SubscriptionTag
+          type={
+            voteAverage > 7 ? SubscriptionType.premium : SubscriptionType.free
+          }
+        ></SubscriptionTag>
         <div className="pt-3 font-semibold line-clamp-1 leading-5">{title}</div>
         <div className="flex items-center gap-1 mt-3">
           <img src={calendarIcon} alt="calendar-icon" className="w-4 h-4 " />
@@ -58,11 +58,6 @@ const MovieSerieItem = ({
           <img src={filmIcon} alt="calendar-icon" className="w-4 h-4 " />
           <span className="text-xs text-grey font-medium">{genre}</span>
         </div>
-        {/* <div className="mt-3">
-          <span className="text-xs text-grey font-medium line-clamp-2 ">
-            {overview}
-          </span>
-        </div> */}
       </div>
     </div>
   );

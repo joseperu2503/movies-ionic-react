@@ -58,9 +58,7 @@ const MoviesByCategoryPage = ({ url, params, title, storeKey }: Props) => {
                 <MovieSerieItem
                   title={movie.title}
                   key={index}
-                  overview={movie.overview}
                   posterPath={getPosterPath(movie.poster_path)}
-                  subscriptionType={SubscriptionType.free}
                   year={getDate(movie.release_date)}
                   voteAverage={movie.vote_average}
                   genres={movie.genre_ids}

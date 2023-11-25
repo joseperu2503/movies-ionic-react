@@ -159,9 +159,7 @@ const SearchTabPage = (): JSX.Element => {
                           <MovieSerieItem
                             title={movie.title}
                             key={movie.id}
-                            overview={movie.overview}
                             posterPath={getPosterPath(movie.poster_path)}
-                            subscriptionType={SubscriptionType.free}
                             year={getDate(movie.release_date)}
                             voteAverage={movie.vote_average}
                             genres={movie.genre_ids}
@@ -179,9 +177,7 @@ const SearchTabPage = (): JSX.Element => {
                           <MovieSerieItem
                             title={serie.name}
                             key={serie.id}
-                            overview={serie.overview}
                             posterPath={getPosterPath(serie.poster_path)}
-                            subscriptionType={SubscriptionType.free}
                             year={getDate(serie.first_air_date)}
                             voteAverage={serie.vote_average}
                             genres={serie.genre_ids}

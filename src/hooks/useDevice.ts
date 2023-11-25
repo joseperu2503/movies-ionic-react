@@ -17,8 +17,6 @@ export function useDevice() {
       StatusBar.setOverlaysWebView({ overlay: true });
     }
 
-    console.log('useDevice')
-
     SafeArea.getSafeAreaInsets().then(({ insets }) => {
       setInsets(insets);
     });
