@@ -4,3 +4,4 @@
 -navigation bar transparente en android
 -react-intersection-observer
 -infinity scroll con ionic
+-useOutsideClick

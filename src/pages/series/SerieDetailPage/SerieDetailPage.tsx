@@ -27,6 +27,7 @@ import { Episodes } from "./components/Episodes/Episodes";
 import "./SerieDetailPage.css";
 import ModalSeasons from "./components/ModalSeasons/ModalSeasons";
 import { Cast } from "@/components/Cast/Cast";
+import { getPosterPath } from "@/utils/utils";
 
 const SerieDetailPage: React.FC = () => {
   const { serieId } = useParams<{ serieId: string }>();
@@ -86,7 +87,7 @@ const SerieDetailPage: React.FC = () => {
           <div className="absolute w-full top-0">
             <div className="relative">
               <img
-                src={`https://image.tmdb.org/t/p/w500${serie?.poster_path}`}
+                src={getPosterPath(serie?.poster_path)}
                 alt=""
                 className="w-full object-cover opacity-[0.24] poster-background"
               />
@@ -95,7 +96,7 @@ const SerieDetailPage: React.FC = () => {
           </div>
           <div className="absolute w-full top-0 pt-24 pb-24 px-6">
             <img
-              src={`https://image.tmdb.org/t/p/w500${serie?.poster_path}`}
+              src={getPosterPath(serie?.poster_path)}
               alt=""
               className="w-[205px] h-auto mx-auto rounded-xl"
             />

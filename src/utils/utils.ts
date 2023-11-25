@@ -1,3 +1,6 @@
+import noProfilePhoto from '@/assets/images/no-profile-photo.png';
+import noImagenFound from '@/assets/images/no-image-found.png';
+
 const getDate = (dateString: string): string => {
   const date = new Date(dateString)
   if (isNaN(date.getTime())) {
@@ -7,16 +10,23 @@ const getDate = (dateString: string): string => {
   return date.getFullYear().toString()
 }
 
-const getPosterPath = (posterPath: string | null): string => {
+const getPosterPath = (posterPath: string | null | undefined): string => {
   return posterPath
     ? `https://image.tmdb.org/t/p/w500${posterPath}`
-    : "https://www.racearchive.org.uk/wp-content/themes/dizy/assets/images/no-image/No-Image-Found-400x264.png"
+    : noImagenFound
 }
 
 const getProfilePath = (profilePath: string | null): string => {
   return profilePath
     ? `https://image.tmdb.org/t/p/w500${profilePath}`
-    : "https://www.racearchive.org.uk/wp-content/themes/dizy/assets/images/no-image/No-Image-Found-400x264.png"
+    : noProfilePhoto
 }
 
-export { getDate, getPosterPath, getProfilePath }
+const getStillPath = (stillPath: string | null): string => {
+  return stillPath
+    ? `https://image.tmdb.org/t/p/w500${stillPath}`
+    : noImagenFound
+}
+
+
+export { getDate, getPosterPath, getProfilePath, getStillPath }

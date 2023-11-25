@@ -7,6 +7,7 @@ import { Movie } from "../../../../interfaces/movie.interface";
 import { mdbApi } from "../../../../api/theMovieDbApi";
 import { ResponsePaginate } from "../../../../interfaces/responsePaginate.interface";
 import { Autoplay, Pagination } from "swiper/modules";
+import { getPosterPath } from "@/utils/utils";
 
 const Slideshow = () => {
   const [movies, setMovies] = useState<Movie[]>([]);
@@ -40,7 +41,7 @@ const Slideshow = () => {
             return (
               <SwiperSlide key={movie.id}>
                 <img
-                  src={`https://image.tmdb.org/t/p/w500${movie.backdrop_path}`}
+                  src={getPosterPath(movie?.backdrop_path)}
                   alt=""
                   className="rounded-2xl"
                 />

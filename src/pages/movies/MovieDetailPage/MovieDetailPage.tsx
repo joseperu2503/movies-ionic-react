@@ -23,6 +23,7 @@ import shareIcon from "@/assets/share.svg";
 import heartIcon from "@/assets/heart.svg";
 import BackButton from "@/components/BackButton/BackButton";
 import { Cast } from "@/components/Cast/Cast";
+import { getPosterPath } from "@/utils/utils";
 
 const MovieDetailPage: React.FC = () => {
   const { movieId } = useParams<{ movieId: string }>();
@@ -67,7 +68,7 @@ const MovieDetailPage: React.FC = () => {
           <div className="absolute w-full top-0">
             <div className="relative">
               <img
-                src={`https://image.tmdb.org/t/p/w500${movie?.poster_path}`}
+                src={getPosterPath(movie?.poster_path)}
                 alt=""
                 className="w-full object-cover opacity-[0.24] poster-background"
               />
@@ -76,7 +77,7 @@ const MovieDetailPage: React.FC = () => {
           </div>
           <div className="absolute w-full top-0 pt-24 pb-24 px-6">
             <img
-              src={`https://image.tmdb.org/t/p/w500${movie?.poster_path}`}
+              src={getPosterPath(movie?.poster_path)}
               alt=""
               className="w-[205px] h-auto mx-auto rounded-xl"
             />

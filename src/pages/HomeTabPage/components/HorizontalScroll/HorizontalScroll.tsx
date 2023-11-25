@@ -6,6 +6,7 @@ import { IonRippleEffect, useIonRouter } from "@ionic/react";
 import { useInView } from "react-intersection-observer";
 import { useMovie } from "@/hooks/useMovie";
 import { useTvSerie } from "@/hooks/useTvSerie";
+import { getPosterPath } from "@/utils/utils";
 
 interface Props {
   url: string;
@@ -78,7 +79,7 @@ const HorizontalScroll = ({
                     onClick={() => router.push(`/${type}/${item.id}`)}
                   >
                     <img
-                      src={`https://image.tmdb.org/t/p/w500${item.poster_path}`}
+                      src={getPosterPath(item?.poster_path)}
                       alt=""
                       className="rounded-xl w-[135px] h-[178px] object-cover"
                     />

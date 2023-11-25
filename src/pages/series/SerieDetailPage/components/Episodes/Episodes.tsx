@@ -5,6 +5,7 @@ import {
 import downloadIcon from "@/assets/download.svg";
 import { Episode } from "@/interfaces/seasonResponse.interface";
 import { IonIcon, IonRippleEffect } from "@ionic/react";
+import { getStillPath } from "@/utils/utils";
 
 interface Props {
   episodes: Episode[];
@@ -21,7 +22,7 @@ const Episodes = ({ episodes }: Props) => {
           >
             <div className="flex gap-4">
               <img
-                src={`https://image.tmdb.org/t/p/w500${episode.still_path}`}
+                src={getStillPath(episode.still_path)}
                 alt=""
                 className="w-[121px] h-[83px] object-cover rounded-lg"
               />
