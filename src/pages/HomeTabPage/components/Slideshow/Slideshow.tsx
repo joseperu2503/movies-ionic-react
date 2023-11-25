@@ -8,6 +8,7 @@ import { mdbApi } from "../../../../api/theMovieDbApi";
 import { ResponsePaginate } from "../../../../interfaces/responsePaginate.interface";
 import { Autoplay, Pagination } from "swiper/modules";
 import { getPosterPath } from "@/utils/utils";
+import { useIonRouter } from "@ionic/react";
 
 const Slideshow = () => {
   const [movies, setMovies] = useState<Movie[]>([]);
@@ -21,6 +22,9 @@ const Slideshow = () => {
     );
     setMovies(moviesResponse.data.results);
   };
+
+  const router = useIonRouter();
+
   return (
     movies.length > 0 && (
       <div className="swiper-container">
@@ -39,7 +43,10 @@ const Slideshow = () => {
         >
           {movies.map((movie) => {
             return (
-              <SwiperSlide key={movie.id}>
+              <SwiperSlide
+                key={movie.id}
+                onClick={() => router.push(`/movie/${movie.id}`)}
+              >
                 <div className="relative rounded-2xl overflow-hidden">
                   <img
                     src={getPosterPath(movie?.backdrop_path)}
