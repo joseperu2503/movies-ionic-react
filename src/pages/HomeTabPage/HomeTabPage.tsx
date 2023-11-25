@@ -12,7 +12,7 @@ const HomeTabPage: React.FC = () => {
     <IonPage>
       <IonHeader translucent={true} className="ion-no-border">
         <IonToolbar>
-          <div className="ps-4 flex items-center gap-2 h-16">
+          <div className="flex items-center gap-2 h-16">
             <Icon icon="mdi:movie-open-settings" className="w-5 h-5" />
             <span className="font-semibold text-lg">Movie Plus</span>
           </div>

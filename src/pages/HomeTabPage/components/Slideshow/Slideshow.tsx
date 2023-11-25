@@ -2,7 +2,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
 import "./Slideshow.css";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Movie } from "../../../../interfaces/movie.interface";
 import { mdbApi } from "../../../../api/theMovieDbApi";
 import { ResponsePaginate } from "../../../../interfaces/responsePaginate.interface";
@@ -40,11 +40,15 @@ const Slideshow = () => {
           {movies.map((movie) => {
             return (
               <SwiperSlide key={movie.id}>
-                <img
-                  src={getPosterPath(movie?.backdrop_path)}
-                  alt=""
-                  className="rounded-2xl"
-                />
+                <div className="relative rounded-2xl overflow-hidden">
+                  <img
+                    src={getPosterPath(movie?.backdrop_path)}
+                    className="rounded-2xl object-cover w-full"
+                  />
+                  <div className="absolute bottom-0 w-full bg-gradient-to-t from-black h-1/5 px-4 pb-4">
+                    <div className="font-semibold">{movie.title}</div>
+                  </div>
+                </div>
               </SwiperSlide>
             );
           })}
