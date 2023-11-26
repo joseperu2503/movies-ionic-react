@@ -25,6 +25,11 @@ const LoginPage = () => {
 
   const router = useIonRouter();
 
+  const login = () => {
+    localStorage.setItem("token", "token");
+    router.push(`/tabs/home`, "root", "replace");
+  };
+
   return (
     <IonPage>
       <IonHeader className="ion-no-border" collapse="fade">
@@ -74,7 +79,7 @@ const LoginPage = () => {
               shape="round"
               expand="block"
               className="h-14 font-medium w-full mt-10"
-              onClick={() => router.push(`/tabs/home`)}
+              onClick={login}
             >
               Login
             </IonButton>

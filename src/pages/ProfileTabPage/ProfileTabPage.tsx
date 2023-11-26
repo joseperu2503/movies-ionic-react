@@ -4,6 +4,7 @@ import {
   IonHeader,
   IonPage,
   IonToolbar,
+  useIonRouter,
 } from "@ionic/react";
 
 import profilePhoto from "@/assets/images/profile-photo.jpg";
@@ -22,6 +23,12 @@ import informationIcon from "@/assets/profile/information.svg";
 import { Divider } from "./components/Divider";
 
 const ProfileTabPage: React.FC = () => {
+  const router = useIonRouter();
+
+  const logout = () => {
+    localStorage.removeItem("token");
+    router.push("/");
+  };
   return (
     <IonPage>
       <IonHeader translucent={true} className="ion-no-border">
@@ -127,6 +134,7 @@ const ProfileTabPage: React.FC = () => {
             expand="block"
             fill="outline"
             className="h-14 font-semibold"
+            onClick={logout}
           >
             Log Out
           </IonButton>
