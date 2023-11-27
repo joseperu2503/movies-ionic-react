@@ -13,14 +13,27 @@ import { Route } from "react-router";
 import homeIcon from "@/assets/tabs/home.svg";
 import searchIcon from "@/assets/tabs/search.svg";
 import personIcon from "@/assets/tabs/person.svg";
+import ProtectedRoute from "@/routes/ProtectedRoute";
 
 const Tabs: React.FC = () => {
   return (
     <IonTabs>
       <IonRouterOutlet>
-        <Route exact path="/tabs/home" component={HomeTabPage}></Route>
-        <Route exact path="/tabs/search" component={SearchTabPage}></Route>
-        <Route exact path="/tabs/profile" component={ProfileTabPage}></Route>
+        <Route exact path="/tabs/home">
+          <ProtectedRoute>
+            <HomeTabPage />
+          </ProtectedRoute>
+        </Route>
+        <Route exact path="/tabs/search">
+          <ProtectedRoute>
+            <SearchTabPage />
+          </ProtectedRoute>
+        </Route>
+        <Route exact path="/tabs/profile">
+          <ProtectedRoute>
+            <ProfileTabPage />
+          </ProtectedRoute>
+        </Route>
       </IonRouterOutlet>
       <IonTabBar slot="bottom">
         <IonTabButton tab="home" href="/tabs/home">
