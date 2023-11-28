@@ -1,6 +1,9 @@
 import {
+  InfiniteScrollCustomEvent,
   IonContent,
   IonHeader,
+  IonInfiniteScroll,
+  IonInfiniteScrollContent,
   IonLabel,
   IonPage,
   IonSegment,
@@ -21,6 +24,7 @@ import { Swiper as SwiperType } from "swiper/types";
 import { SearchInput } from "./components/SearchInput";
 import { PersonSearchItem } from "./components/PersonSearchItem";
 import { GenresSlide } from "@/components/GenresSlide/GenresSlide";
+import { useMovie } from "@/hooks/useMovie";
 
 const SearchTabPage = (): JSX.Element => {
   const [searchValue, setSearchValue] = useState<string>("");
@@ -102,6 +106,22 @@ const SearchTabPage = (): JSX.Element => {
     }
   };
 
+  const { getItems, items, page, totalPages } = useMovie({
+    storeKey: "discover",
+    url: "discover/movie",
+  });
+
+  const onIonInfinite = (ev: InfiniteScrollCustomEvent) => {
+    getItems();
+    ev.target.complete();
+  };
+
+  useEffect(() => {
+    if (page == 1) {
+      getItems();
+    }
+  }, []);
+
   return (
     <IonPage>
       <IonHeader className="ion-no-border">
@@ -113,6 +133,13 @@ const SearchTabPage = (): JSX.Element => {
             />
           </div>
         </IonToolbar>
+        {searchValue.length == 0 && (
+          <IonToolbar>
+            <div className="pt-3 pb-3">
+              <GenresSlide />
+            </div>
+          </IonToolbar>
+        )}
       </IonHeader>
       {searchValue.length > 0 && (
         <IonContent fullscreen>
@@ -192,10 +219,25 @@ const SearchTabPage = (): JSX.Element => {
 
       {searchValue.length == 0 && (
         <IonContent fullscreen>
-          <div className="pt-5">
-            <GenresSlide />
+          <div className="font-semibold text-white px-6 pb-2 mt-6">
+            Recommend for you
           </div>
-          <div className="h-full pt-6"></div>
+
+          <div className="px-6 pb-8 pt-2">
+            <div className="flex flex-col gap-4">
+              {items.map((item) => {
+                return (
+                  <MovieSerieItem item={item} key={item.id} type="movie" />
+                );
+              })}
+            </div>
+          </div>
+          <IonInfiniteScroll
+            onIonInfinite={onIonInfinite}
+            disabled={page > totalPages}
+          >
+            <IonInfiniteScrollContent loadingSpinner="bubbles"></IonInfiniteScrollContent>
+          </IonInfiniteScroll>
         </IonContent>
       )}
     </IonPage>

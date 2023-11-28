@@ -8,7 +8,7 @@ const GenresSlide = () => {
   const movieGenres = useAppSelector((state) => state.genres.movieGenres);
 
   return (
-    <div className="px-6">
+    <div>
       <Swiper slidesPerView="auto" spaceBetween={8}>
         {movieGenres.map((genre) => {
           return (
