@@ -1,10 +1,15 @@
-import { IonContent, IonHeader, IonPage, IonToolbar } from "@ionic/react";
-
+import {
+  IonContent,
+  IonHeader,
+  IonIcon,
+  IonPage,
+  IonToolbar,
+} from "@ionic/react";
 import { Slideshow } from "@/pages/HomeTabPage/components/Slideshow/Slideshow";
 import { HorizontalScroll } from "@/pages/HomeTabPage/components/HorizontalScroll/HorizontalScroll";
-import { Icon } from "@iconify/react";
 import { useAppSelector } from "@/store/store";
 import { GenresSlide } from "@/components/GenresSlide/GenresSlide";
+import logoIcon from "@/assets/logo.svg";
 
 const HomeTabPage: React.FC = () => {
   const movieGenres = useAppSelector((state) => state.genres.movieGenres);
@@ -14,7 +19,7 @@ const HomeTabPage: React.FC = () => {
       <IonHeader translucent={true} className="ion-no-border">
         <IonToolbar>
           <div className="flex items-center gap-2 h-16">
-            <Icon icon="mdi:movie-open-settings" className="w-5 h-5" />
+            <IonIcon src={logoIcon} className="w-5 h-5" />
             <span className="font-semibold text-lg">Movie Plus</span>
           </div>
         </IonToolbar>
