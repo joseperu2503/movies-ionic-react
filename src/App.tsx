@@ -23,6 +23,8 @@ import { useDevice } from "@/hooks/useDevice";
 import { useGenres } from "@/hooks/useGenres";
 import { AppRouter } from "./routes/AppRouter";
 import { SplashScreen } from '@capacitor/splash-screen';
+import { useEffect } from "react";
+import { useBackButton } from "./hooks/useBackButton";
 
 setupIonicReact({
   mode: "ios",
@@ -32,6 +34,10 @@ const App: React.FC = () => {
   useDevice();
   useGenres();
   SplashScreen.hide();
+
+  useEffect(() => {
+    useBackButton()
+  }, [])
 
   return (
     <IonApp>
