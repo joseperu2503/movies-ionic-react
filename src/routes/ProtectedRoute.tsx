@@ -6,7 +6,7 @@ interface Props {
 }
 const ProtectedRoute = ({ children }: Props) => {
   const token = localStorage.getItem("token");
-
+  console.log('protected')
   if (!token) {
     return <Redirect to="/" />;
   } else {

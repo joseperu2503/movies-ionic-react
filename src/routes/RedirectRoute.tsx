@@ -6,6 +6,7 @@ interface Props {
 }
 const RedirectRoute = ({ children }: Props) => {
   const token = localStorage.getItem("token");
+  console.log('redirect')
 
   if (token) {
     return <Redirect to="/tabs/home" />;
