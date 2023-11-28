@@ -15,6 +15,7 @@ import { IonRouterOutlet } from "@ionic/react";
 import { Redirect, Route } from "react-router";
 import ProtectedRoute from "./ProtectedRoute";
 import RedirectRoute from "./RedirectRoute";
+import { EditProfilePage } from "@/pages/EditProfilePage/EditProfilePage";
 
 const AppRouter = () => {
   return (
@@ -148,6 +149,11 @@ const AppRouter = () => {
         </Route>
         <Route exact path="/tabs/:id">
           <Tabs></Tabs>
+        </Route>
+        <Route exact path="/edit-profile">
+          <ProtectedRoute>
+            <EditProfilePage />
+          </ProtectedRoute>
         </Route>
       </IonRouterOutlet>
     </IonReactRouter>

@@ -3,6 +3,7 @@ import {
   IonContent,
   IonHeader,
   IonPage,
+  IonRippleEffect,
   IonToolbar,
   useIonRouter,
 } from "@ionic/react";
@@ -40,7 +41,10 @@ const ProfileTabPage: React.FC = () => {
       </IonHeader>
       <IonContent fullscreen>
         <div className="p-6 pb-4">
-          <div className="flex items-center py-4 px-4 rounded-2xl border-primary-soft border">
+          <div
+            className="flex items-center py-4 px-4 rounded-2xl border-primary-soft border ion-activatable relative overflow-hidden"
+            onClick={() => router.push(`/edit-profile`)}
+          >
             <img
               src={profilePhoto}
               className="w-14 h-14 rounded-full object-cover"
@@ -53,6 +57,7 @@ const ProfileTabPage: React.FC = () => {
             </div>
             <div className="flex-1"></div>
             <img src={editIcon} />
+            <IonRippleEffect></IonRippleEffect>
           </div>
 
           <div className="mt-6">
