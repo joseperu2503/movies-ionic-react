@@ -22,6 +22,8 @@ import "./theme/variables.css";
 import { useDevice } from "@/hooks/useDevice";
 import { useGenres } from "@/hooks/useGenres";
 import { AppRouter } from "./routes/AppRouter";
+import { SplashScreen } from '@capacitor/splash-screen';
+
 setupIonicReact({
   mode: "ios",
 });
@@ -29,6 +31,7 @@ setupIonicReact({
 const App: React.FC = () => {
   useDevice();
   useGenres();
+  SplashScreen.hide();
 
   return (
     <IonApp>
