@@ -20,7 +20,7 @@
 /.vscode/*
 !/.vscode/extensions.json
 .idea
-/dist
+dist/
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
