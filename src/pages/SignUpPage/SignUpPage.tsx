@@ -89,7 +89,7 @@ const SignUpPage = () => {
               shape="round"
               expand="block"
               className="h-14 font-medium w-full mt-10"
-              onClick={() => router.push(`/`)}
+              onClick={() => router.push(`/`, "root")}
             >
               Sign Up
             </IonButton>
