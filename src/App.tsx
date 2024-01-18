@@ -22,12 +22,13 @@ import "./theme/variables.css";
 import { useDevice } from "@/hooks/useDevice";
 import { useGenres } from "@/hooks/useGenres";
 import { AppRouter } from "./routes/AppRouter";
-import { SplashScreen } from '@capacitor/splash-screen';
+import { SplashScreen } from "@capacitor/splash-screen";
 import { useEffect } from "react";
 import { useBackButton } from "./hooks/useBackButton";
 
 setupIonicReact({
   mode: "ios",
+  swipeBackEnabled: false,
 });
 
 const App: React.FC = () => {
@@ -36,8 +37,8 @@ const App: React.FC = () => {
   SplashScreen.hide();
 
   useEffect(() => {
-    useBackButton()
-  }, [])
+    useBackButton();
+  }, []);
 
   return (
     <IonApp>

@@ -1,6 +1,7 @@
 import { Swiper, SwiperSlide } from "swiper/react";
+import { FreeMode } from "swiper/modules";
 import "swiper/css";
-import "swiper/css/pagination";
+import "swiper/css/free-mode";
 import { useState } from "react";
 import { IonRippleEffect, useIonRouter } from "@ionic/react";
 import { useInView } from "react-intersection-observer";
@@ -71,7 +72,15 @@ const HorizontalScroll = ({
       <div className="mt-3 h-[178px]">
         {items.length > 0 && (
           <div className="px-6">
-            <Swiper slidesPerView="auto" spaceBetween={12}>
+            <Swiper
+              slidesPerView="auto"
+              spaceBetween={12}
+              freeMode={{
+                momentumBounce: false,
+                minimumVelocity: 0.3,
+              }}
+              modules={[FreeMode]}
+            >
               {items.map((item) => {
                 return (
                   <SwiperSlide

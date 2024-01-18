@@ -9,7 +9,7 @@ import {
   IonTabButton,
   IonTabs,
 } from "@ionic/react";
-import { Route } from "react-router";
+import { Redirect, Route } from "react-router";
 import homeIcon from "@/assets/tabs/home.svg";
 import searchIcon from "@/assets/tabs/search.svg";
 import personIcon from "@/assets/tabs/person.svg";
@@ -19,21 +19,12 @@ const Tabs: React.FC = () => {
   return (
     <IonTabs>
       <IonRouterOutlet>
-        <Route exact path="/tabs/home">
-          <ProtectedRoute>
-            <HomeTabPage />
-          </ProtectedRoute>
-        </Route>
-        <Route exact path="/tabs/search">
-          <ProtectedRoute>
-            <SearchTabPage />
-          </ProtectedRoute>
-        </Route>
-        <Route exact path="/tabs/profile">
-          <ProtectedRoute>
-            <ProfileTabPage />
-          </ProtectedRoute>
-        </Route>
+        <Redirect exact path="/tabs" to="/tabs/home" />
+        <Route path="/tabs/home" render={() => <HomeTabPage />} />
+
+        <Route path="/tabs/search" render={() => <SearchTabPage />} />
+
+        <Route path="/tabs/profile" render={() => <ProfileTabPage />} />
       </IonRouterOutlet>
       <IonTabBar slot="bottom">
         <IonTabButton tab="home" href="/tabs/home">
