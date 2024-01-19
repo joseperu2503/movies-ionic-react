@@ -28,7 +28,7 @@ import { useBackButton } from "./hooks/useBackButton";
 
 setupIonicReact({
   mode: "ios",
-  swipeBackEnabled: false,
+  swipeBackEnabled: true,
 });
 
 const App: React.FC = () => {

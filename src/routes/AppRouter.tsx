@@ -14,12 +14,15 @@ import { IonRouterOutlet, IonSplitPane } from "@ionic/react";
 import { Route } from "react-router";
 
 import { EditProfilePage } from "@/pages/EditProfilePage/EditProfilePage";
+import { HomeTabPage } from "@/pages/HomeTabPage/HomeTabPage";
+import { SearchTabPage } from "@/pages/SearchTabPage/SearchTabPage";
+import { ProfileTabPage } from "@/pages/ProfileTabPage/ProfileTabPage";
 
 const AppRouter = () => {
   return (
     <IonReactRouter>
       <IonRouterOutlet>
-        <Route path="/tabs" render={() => <Tabs />}></Route>
+        {/* <Route path="/tabs" render={() => <Tabs />}></Route> */}
 
         <Route exact path="/login" component={LoginPage} />
 
@@ -34,6 +37,12 @@ const AppRouter = () => {
           path="/create-new-password"
           component={CreateNewPasswordPage}
         />
+
+        <Route path="/home" render={() => <HomeTabPage />} />
+
+        <Route path="/search" render={() => <SearchTabPage />} />
+
+        <Route path="/profile" render={() => <ProfileTabPage />} />
 
         <Route path="/movie/:movieId" component={MovieDetailPage} />
         <Route exact path="/tv/:serieId" component={SerieDetailPage} />

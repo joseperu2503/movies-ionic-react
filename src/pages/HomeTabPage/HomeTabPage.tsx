@@ -3,29 +3,51 @@ import {
   IonHeader,
   IonIcon,
   IonPage,
+  IonRippleEffect,
   IonToolbar,
+  useIonRouter,
 } from "@ionic/react";
 import { Slideshow } from "@/pages/HomeTabPage/components/Slideshow/Slideshow";
 import { HorizontalScroll } from "@/pages/HomeTabPage/components/HorizontalScroll/HorizontalScroll";
 import { useAppSelector } from "@/store/store";
 import { GenresSlide } from "@/components/GenresSlide/GenresSlide";
 import logoIcon from "@/assets/logo.svg";
+import profilePhoto from "@/assets/images/profile-photo.jpg";
+import searchIcon from "@/assets/tabs/search.svg";
 
 const HomeTabPage: React.FC = () => {
   const movieGenres = useAppSelector((state) => state.genres.movieGenres);
+  const router = useIonRouter();
 
   return (
     <IonPage>
       <IonHeader translucent={true} className="ion-no-border">
         <IonToolbar>
-          <div className="flex items-center gap-2 h-16">
-            <IonIcon src={logoIcon} className="w-5 h-5" />
-            <span className="font-semibold text-lg">Movie Plus</span>
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-2 h-16">
+              <IonIcon src={logoIcon} className="w-5 h-5" />
+              <span className="font-semibold text-lg">Movie Plus</span>
+            </div>
+            <div className="flex items-center gap-3">
+              <div
+                onClick={() => router.push("/search")}
+                className="w-12 h-12 bg-primary-soft rounded-full flex justify-center items-center ion-activatable relative overflow-hidden"
+              >
+                <IonIcon
+                  aria-hidden="true"
+                  src={searchIcon}
+                  className="w-6 h-6 text-grey"
+                />
+                <IonRippleEffect></IonRippleEffect>
+              </div>
+              <img
+                onClick={() => router.push("/profile")}
+                src={profilePhoto}
+                className="w-10 h-10 rounded-full object-cover"
+              />
+            </div>
           </div>
         </IonToolbar>
-        {/* <IonToolbar>
-          <IonSearchbar placeholder="Search a tittle.."></IonSearchbar>
-        </IonToolbar> */}
       </IonHeader>
       <IonContent fullscreen id="movies-container">
         <div className="mt-6">

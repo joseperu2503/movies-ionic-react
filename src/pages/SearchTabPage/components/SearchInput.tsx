@@ -1,6 +1,6 @@
 import searchIcon from "@/assets/tabs/search.svg";
 import { IonIcon } from "@ionic/react";
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent } from "react";
 
 interface Props {
   searchValue: string;
