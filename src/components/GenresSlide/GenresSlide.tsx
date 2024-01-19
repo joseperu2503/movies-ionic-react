@@ -1,6 +1,5 @@
 import { useAppSelector } from "@/store/store";
 import { IonRippleEffect, useIonRouter } from "@ionic/react";
-import { Swiper, SwiperSlide } from "swiper/react";
 
 const GenresSlide = () => {
   const router = useIonRouter();
@@ -8,23 +7,21 @@ const GenresSlide = () => {
   const movieGenres = useAppSelector((state) => state.genres.movieGenres);
 
   return (
-    <div>
-      <Swiper slidesPerView="auto" spaceBetween={8}>
+    <div className="overflow-x-scroll px-6">
+      <div className="flex w-max gap-2">
         {movieGenres.map((genre) => {
           return (
-            <SwiperSlide
+            <div
               key={genre.id}
-              className="w-auto"
               onClick={() => router.push(`/movies/genre/${genre.id}`)}
+              className="px-3 py-2 bg-primary-soft text-xs text-white-grey rounded-lg font-medium ion-activatable relative overflow-hidden"
             >
-              <div className="px-3 py-2 bg-primary-soft text-xs text-white-grey rounded-lg font-medium ion-activatable relative overflow-hidden">
-                {genre.name}
-                <IonRippleEffect></IonRippleEffect>
-              </div>
-            </SwiperSlide>
+              {genre.name}
+              <IonRippleEffect></IonRippleEffect>
+            </div>
           );
         })}
-      </Swiper>
+      </div>
     </div>
   );
 };
