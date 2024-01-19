@@ -27,7 +27,7 @@ const LoginPage = () => {
 
   const login = () => {
     localStorage.setItem("token", "token");
-    router.push(`/home`, "root", "replace");
+    router.push(`/home`);
   };
 
   return (

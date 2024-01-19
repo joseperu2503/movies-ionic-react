@@ -30,7 +30,7 @@ const ProfileTabPage: React.FC = () => {
 
   const logout = () => {
     localStorage.removeItem("token");
-    router.push(`/`, "root", "push");
+    router.push(`/`);
   };
   return (
     <IonPage>

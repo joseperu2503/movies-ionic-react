@@ -5,6 +5,7 @@ import {
   IonPage,
   IonRippleEffect,
   IonToolbar,
+  setupIonicReact,
   useIonRouter,
 } from "@ionic/react";
 import { Slideshow } from "@/pages/HomeTabPage/components/Slideshow/Slideshow";
@@ -18,6 +19,9 @@ import searchIcon from "@/assets/tabs/search.svg";
 const HomeTabPage: React.FC = () => {
   const movieGenres = useAppSelector((state) => state.genres.movieGenres);
   const router = useIonRouter();
+  setupIonicReact({
+    swipeBackEnabled: false,
+  });
 
   return (
     <IonPage>

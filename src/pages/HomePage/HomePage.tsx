@@ -4,6 +4,7 @@ import {
   IonIcon,
   IonPage,
   IonRippleEffect,
+  setupIonicReact,
   useIonRouter,
 } from "@ionic/react";
 import googleIcon from "@/assets/home/google.svg";
@@ -13,7 +14,9 @@ import logoIcon from "@/assets/logo.svg";
 
 const HomePage = () => {
   const router = useIonRouter();
-
+  setupIonicReact({
+    swipeBackEnabled: false,
+  });
   return (
     <IonPage className="safe-area-top">
       <IonContent>
