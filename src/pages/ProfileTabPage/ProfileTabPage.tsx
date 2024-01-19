@@ -4,6 +4,7 @@ import {
   IonHeader,
   IonPage,
   IonRippleEffect,
+  IonTitle,
   IonToolbar,
   useIonRouter,
 } from "@ionic/react";
@@ -22,6 +23,7 @@ import shieldIcon from "@/assets/profile/shield.svg";
 import questionIcon from "@/assets/profile/question.svg";
 import informationIcon from "@/assets/profile/information.svg";
 import { Divider } from "./components/Divider";
+import BackButton from "@/components/BackButton/BackButton";
 
 const ProfileTabPage: React.FC = () => {
   const router = useIonRouter();
@@ -34,9 +36,10 @@ const ProfileTabPage: React.FC = () => {
     <IonPage>
       <IonHeader translucent={true} className="ion-no-border">
         <IonToolbar>
-          <div className="flex items-center h-full w-full justify-center">
-            <div className="font-semibold">Profile</div>
-          </div>
+          <BackButton />
+          <IonTitle>
+            <span className="text-base font-semibold">Profile</span>
+          </IonTitle>
         </IonToolbar>
       </IonHeader>
       <IonContent fullscreen>

@@ -8,6 +8,7 @@ import {
   IonPage,
   IonSegment,
   IonSegmentButton,
+  IonTitle,
   IonToolbar,
   SegmentChangeEventDetail,
 } from "@ionic/react";
@@ -25,6 +26,7 @@ import { SearchInput } from "./components/SearchInput";
 import { PersonSearchItem } from "./components/PersonSearchItem";
 import { GenresSlide } from "@/components/GenresSlide/GenresSlide";
 import { useMovie } from "@/hooks/useMovie";
+import BackButton from "@/components/BackButton/BackButton";
 
 const SearchTabPage = (): JSX.Element => {
   const [searchValue, setSearchValue] = useState<string>("");
@@ -124,6 +126,14 @@ const SearchTabPage = (): JSX.Element => {
 
   return (
     <IonPage>
+      <IonHeader className="ion-no-border">
+        <IonToolbar>
+          <BackButton />
+          <IonTitle>
+            <span className="text-base font-semibold">Search</span>
+          </IonTitle>
+        </IonToolbar>
+      </IonHeader>
       <IonHeader className="ion-no-border">
         <IonToolbar>
           <div className="py-2">
